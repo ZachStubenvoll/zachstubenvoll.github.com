@@ -1,0 +1,21 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+
+# OS or Editor folders
+.DS_Store
+Thumbs.db
+.cache
+
+# Output from LESS files
+*.css
+
+# Static site output
+_site

@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+	Zach Stubenvoll -- Designer -- @zachstubenvoll
+	Jeffrey Louden -- Developer -- @jeffreylouden
+
+# THANKS
+
+    President Barack Obama.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
