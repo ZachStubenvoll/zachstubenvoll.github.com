@@ -49,7 +49,7 @@
 @dark-gray: #999;
 @body-copy: black;
 @link-color: #BCBEC0;
-@link-hover: black;
+@link-hover: #BE1E37;
 
 @condensed: "proxima-nova-condensed-1","proxima-nova-condensed-2", sans-serif;
 @body: "proxima-nova-1","proxima-nova-2", sans-serif;
@@ -95,10 +95,9 @@ body {
         padding: 10px 0 5px;
         border-bottom: 4px solid @body-copy;
         position: fixed;
+        display: block;
         z-index: 999;
         top: 0;
-        left: 0;
-        right: 0;
         -webkit-animation: slideDown 1s ease;
         -moz-animation: slideDown 1s ease;
         animation: slideDown 1s ease;
@@ -372,23 +371,25 @@ footer {
         position: relative;
         #main-header {
             width: 96%;
-            background: white;
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            display: block;
+            top: -100%;
             padding: 0 2%;
             opacity: 0;
             text-align: center;
-            overflow: hidden;
             border: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+            -webkit-transition: opacity 750ms ease-in-out;
+            -moz-transition: opacity 750ms ease-in-out;
+            transition: opacity 750ms ease-in-out;
+
+            -webkit-transition: top 750ms ease-in-out;
+            -moz-transition: top 750ms ease-in-out;
+            transition: top 750ms ease-in-out;
             
             &.stay {
-                box-shadow: 0 0 10px rgba(0,0,0,0.5);
+                
+                top: 0;
                 opacity: 1;
-                -webkit-transition: opacity 750ms ease;
-                -moz-transition: opacity 750ms ease;
-                transition: opacity 750ms ease;
 
                 &+ figure {
                     padding-top: 90px;
@@ -433,7 +434,7 @@ footer {
                         font-size: 14px;
                         z-index: 500;
                         color: @dark-gray;
-                        border-left: 1px solid @light-gray;
+                        border-left: 2px solid @link-hover;
                         white-space: nowrap;
                         &.animate {
                             -webkit-animation: fadeIn 250ms ease;
@@ -475,7 +476,7 @@ footer {
                             a {
                                 color: @light-gray;
                                 &:hover {
-                                    color: @body-copy;
+                                    color: @link-hover;
                                 }
                             }
                         }
@@ -557,7 +558,7 @@ footer {
                 line-height: 1;
                 text-decoration: none;
                 padding-bottom: 4px;
-                border-bottom: 6px solid black;
+                border-bottom: 6px solid @link-hover;
             }
         }
         article {

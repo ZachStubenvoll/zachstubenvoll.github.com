@@ -123,7 +123,7 @@
                         imageCreditText     =   '<b>' + imageAlt[0] + COLON + '<i>' + imageAlt[1] + '</i></b>';
 
                         if ( !imageCredit.length ) {
-                            imageContainer.append(imageCreditText);
+                            image.wrap('<div />').after(imageCreditText);
                         }
                     }
                 });
