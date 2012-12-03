@@ -2,12 +2,9 @@
 layout: default
 ---
 
-{% assign handle = {{ post.title }} %}
-
-
 {% for post in site.posts limit:8 %}
 
-    <li id="{{ handle }}">
+    <li id="{{ post.title | handleize }}">
         <header>
         <h2{% if post.nav-title %} data-nav-title="{{ post.nav-title }}" {% endif %}>{{ post.title }}</h2>
         </header>
