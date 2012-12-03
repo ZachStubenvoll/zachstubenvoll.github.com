@@ -176,13 +176,14 @@
                     sectionID               =   section.attr(ID),
                     sectionFigure           =   section.find(FIGURE),
                     sectionHeader           =   section.find(HTWO),
+                    sectionText             =   sectionHeader.text(),
                     sectionHeaderNavTitle   =   sectionHeader.data('nav-title'),
                     navItemText             =   sectionHeaderNavTitle !== undefined ? sectionHeaderNavTitle : sectionHeader.text();
 
                 section.data(OFFSETTOP, Math.floor(section.offset().top) - 42);
                 section.data(OFFSETBOTTOM, section.data(OFFSETTOP) + section.outerHeight(true));
 
-                mainNavList.append('<li data-project="' + sectionID + '"><a href="#' + sectionID + '" title="' + navItemText + '">' + navItemText + '</a></li>');
+                mainNavList.append('<li data-project="' + sectionID + '"><a href="#' + sectionID + '" title="' + navItemText + '">' + sectionText + '</a></li>');
                 mainSubnav.append('<li data-project="' + sectionID + '"><a href="#' + sectionID + '" title="' + navItemText + '">' + navItemText + '</a></li>');
 
             });
