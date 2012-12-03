@@ -221,7 +221,7 @@
             s                       =   $(HASH + target),
             elementDistanceFromTop  =   s.offset().top;
 
-        htmlbody.animate({scrollTop: elementDistanceFromTop}, 600);
+        htmlbody.animate({scrollTop: elementDistanceFromTop}, 200);
         scrollEffects();
 
         // Send a google analytic event to see what sections people are clicking on
@@ -285,9 +285,9 @@
 
     wndw.resize(function() {
         windowHeight     =   ($(this).innerHeight() / 3);
-        scrollEffects();
         setSectionPositions();
         setup(windowHeight);
+        wndw.scroll();
     });
 
     wndw.scroll(function() {
@@ -296,6 +296,7 @@
 
     sectionImages.on('load', function() {
         setSectionPositions();
+        wndw.scroll();
     });
 
     setup(wndwThird);
