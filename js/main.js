@@ -40,8 +40,7 @@
         mainNav             =   $('#main-nav'),
         mainNavList         =   mainNav.find('ul'),
         logo                =   $('#logo'),
-        logoLetters         =   logo.find('u'),
-        mainNavItems        =   mainNav.find('li'),
+        mainNavItems        =   mainNavList.find('li'),
         main                =   $('#main'),
         mainHeader          =   main.find('#main-header'),
         mainTitle           =   mainHeader.find('h2 b'),
@@ -50,7 +49,6 @@
         mainSubTitle        =   mainHeader.find('h2 strong'),
         mainContact         =   $('#contact-me'),
         mobileLogo          =   mainHeader.find('h1'),
-        mobileLogoLetters   =   mobileLogo.find('a'),
         mobileNav           =   mainHeader.find('h2 i'),
         mobileContact       =   mainContact.find('i'),
         sections            =   main.find('ol li'),
@@ -60,7 +58,6 @@
         footerNav           =   footer.find('#contact-nav'),
         footerNavItems      =   footerNav.find('li'),
         footerLogo          =   footer.find('#footer-header'),
-        footerLogoLetters   =   footerLogo.find('b'),
         footerCopy          =   footer.find('p'),
         navItems            =   nav.find('li'),
         windowHeight        =   win.innerHeight,
@@ -82,13 +79,11 @@
             var
                 section                 =   $(this),
                 sectionID               =   section.attr(ID),
-                sectionFigure           =   section.find(FIGURE),
-                sectionHeader           =   section.find(HTWO);
+                sectionFigure           =   section.find(FIGURE);
 
             section.data(OFFSETTOP, Math.floor(section.offset().top) - 42);
             section.data(OFFSETBOTTOM, section.data(OFFSETTOP) + section.outerHeight(true));
 
-            
             sectionFigure.each(function() {
                 var
                     figure          =   $(this),
@@ -135,8 +130,6 @@
         scrollDistance  =   wndw.scrollTop();
         scrollDistance  =   scrollDistance ? scrollDistance : 0;
 
-        mainNav.css('opacity', 1 - (scrollDistance / 800));
-
         if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) >= scrollDistance) ) {
             mainHeader.addClass(STAY);
         } else {
@@ -164,7 +157,6 @@
                         mainSubTitle.text(figureCaption.text());
                     }
                 });
-
             }
         });
     }
@@ -174,7 +166,7 @@
             w               =   wndw.innerWidth(),
             mainNavItems    =   mainNavList.find('li'),
             subnavItems     =   mainSubnav.find('li'),
-            mainLogo        =   '<li id="logo"><a href="#contact" title="Zach Stubenvoll"><u>Zach Stubenvoll</u></a></li>';
+            mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll"><u>Zach Stubenvoll</u></a></li>';
 
         if ( (mainNavItems.length <= 0) && (subnavItems.length <= 0) ) {
 
@@ -253,7 +245,7 @@
         htmlbody.animate({scrollTop: 0}, 600);
     });
 
-    logo.click(function(e){
+    logo.on('click', LISTITEM, function(e){
         e.preventDefault();
         scrollToSection(CONTACT);
     });
@@ -270,7 +262,7 @@
         scrollToSection(t.data(PROJECT));
     });
 
-    mainNavItems.click(function(e) {
+    mainNav.on('click', LISTITEM, function(e) {
         var t = $(this);
         e.preventDefault();
         scrollToSection(t.data(PROJECT));
@@ -305,10 +297,6 @@
     sectionImages.on('load', function() {
         setSectionPositions();
     });
-
-    logoLetters.lettering();
-    mobileLogoLetters.lettering();
-    footerLogoLetters.lettering();
 
     setup(wndwThird);
 
