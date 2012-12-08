@@ -39,7 +39,7 @@
         nav                 =   $('nav'),
         mainNav             =   $('#main-nav'),
         mainNavList         =   mainNav.find('ul'),
-        logo                =   $('#logo'),
+        logo                =   $('#zach'),
         mainNavItems        =   mainNavList.find('li'),
         main                =   $('#main'),
         mainHeader          =   main.find('#main-header'),
@@ -54,6 +54,7 @@
         sections            =   main.find('ol li'),
         sectionHeader       =   sections.find('h2'),
         sectionImages       =   sections.find('img'),
+        sectionArticles     =   sections.find('article'),
         footer              =   $('#contact'),
         footerNav           =   footer.find('#contact-nav'),
         footerNavItems      =   footerNav.find('li'),
@@ -64,6 +65,7 @@
         wndwThird           =   windowHeight / 3,
         mainHeight,
         mainHeaderOffset,
+        currentSection,
 
         scrollDistance      =    0;
 
@@ -92,36 +94,6 @@
                 figure.data(OFFSETTOP, Math.floor(figure.offset().top) - 62);
                 figure.data(OFFSETBOTTOM, figure.data(OFFSETTOP) + figure.outerHeight(true));
 
-                figureImg.each(function() {
-                    var
-                        COLON               =   '',
-
-                        image               =   $(this),
-                        imageAlt            =   image.attr(ALT),
-                        imageCreditText,
-                        imageContainer,
-                        imageCredit;
-
-                    if ( imageAlt === undefined || imageAlt === '' ) {
-                        imageAlt = '';
-                    } else {
-                        imageAlt            =   imageAlt.split(COLONSPACE);
-                        imageContainer      =   image.closest(DIV);
-                        imageCredit         =   imageContainer.find(BOLD);
-
-                        if ( imageAlt[1] === undefined ) {
-                            imageAlt[1] = '';
-                        } else {
-                            COLON = COLONSPACE;
-                        }
-
-                        imageCreditText     =   '<b>' + imageAlt[0] + COLON + '<i>' + imageAlt[1] + '</i></b>';
-
-                        if ( !imageCredit.length ) {
-                            image.wrap('<div />').after(imageCreditText);
-                        }
-                    }
-                });
             });
         });
     }
@@ -141,23 +113,33 @@
                 section             =   $(this),
                 figures             =   section.find(FIGURE),
                 sectionHeader       =   section.find(HTWO),
+                sectionText         =   sectionHeader.text(),
                 sectionTop          =   section.data(OFFSETTOP),
                 sectionBottom       =   section.data(OFFSETBOTTOM);
 
-            if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
-                mainTitle.text(sectionHeader.text());
+            if ( currentSection !== sectionText ) {
 
-                figures.each(function() {
-                    var
-                        f               =   $(this),
-                        figureTop       =   f.data(OFFSETTOP),
-                        figureCaption   =   f.find(FIGCAPTION);
+                // console.log('different!');
+                
+                if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
+                    currentSection = sectionText;
 
-                    if ( (scrollDistance >= figureTop) ) {
-                        mainSubTitle.text(figureCaption.text());
-                    }
-                });
+                    mainTitle.text(sectionText);
+
+                    figures.each(function() {
+                        var
+                            f               =   $(this),
+                            figureTop       =   f.data(OFFSETTOP),
+                            figureCaption   =   f.find(FIGCAPTION);
+
+                        if ( (scrollDistance >= figureTop) ) {
+                            mainSubTitle.text(figureCaption.text());
+                        }
+                    });
+                }
+            
             }
+
         });
     }
 
@@ -166,7 +148,7 @@
             w               =   wndw.innerWidth(),
             mainNavItems    =   mainNavList.find('li'),
             subnavItems     =   mainSubnav.find('li'),
-            mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll"><u>Zach Stubenvoll</u></a></li>';
+            mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll" id="zach">Zach Stubenvoll</a><a href="mailto:zachstubenvoll@me.com" title="For Hire" id="for-hire"><b>For Hire</b></a></li>';
 
         if ( (mainNavItems.length <= 0) && (subnavItems.length <= 0) ) {
 
@@ -209,6 +191,14 @@
             main.removeClass(HIDE);
             footer.removeClass(HIDE);
 
+
+            sectionArticles.each(function() {
+                var s = $(this);
+                if ( !s.find('b').length ) {
+                    s.append('<b>close</b>');
+                }
+            });
+
         } else {
             navItems.css(HEIGHT, AUTO);
             footerLogo.css(HEIGHT, AUTO);
@@ -217,12 +207,15 @@
     }
 
     function scrollToSection( target ) {
+
         var
-            scrollDistance          =   scrollDistance,
             s                       =   $(HASH + target),
             elementDistanceFromTop  =   s.offset().top;
 
-        htmlbody.animate({scrollTop: elementDistanceFromTop}, 200);
+        console.log('scroll distance:' + scrollDistance);
+        console.log('element top:' + elementDistanceFromTop);
+
+        htmlbody.animate({scrollTop: elementDistanceFromTop}, 300);
         scrollEffects();
 
         // Send a google analytic event to see what sections people are clicking on
@@ -246,11 +239,6 @@
         htmlbody.animate({scrollTop: 0}, 600);
     });
 
-    logo.on('click', LISTITEM, function(e){
-        e.preventDefault();
-        scrollToSection(CONTACT);
-    });
-
     mainContact.click(function(e){
         e.preventDefault();
         scrollToSection(CONTACT);
@@ -263,10 +251,25 @@
         scrollToSection(t.data(PROJECT));
     });
 
-    mainNav.on('click', LISTITEM, function(e) {
+    mainNav.on('click', 'a', function(e) {
         var t = $(this);
+        if ( t.attr(ID) !== 'for-hire' ) {
+            e.preventDefault();
+            scrollToSection(t.closest(LISTITEM).data(PROJECT));
+        }
+    });
+
+    logo.on('click', LISTITEM, function(e){
         e.preventDefault();
-        scrollToSection(t.data(PROJECT));
+        scrollToSection(CONTACT);
+    });
+
+    sectionArticles.on('click', 'b', function() {
+        $(this).closest('article').removeClass(SHOW);
+    });
+
+    sectionImages.click(function() {
+        $(this).find('+ article').addClass(SHOW);
     });
 
     sectionHeader.click(function() {
@@ -297,7 +300,6 @@
 
     sectionImages.on('load', function() {
         setSectionPositions();
-        wndw.scroll();
     });
 
     setup(wndwThird);

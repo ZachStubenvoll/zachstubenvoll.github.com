@@ -1,5 +1,5 @@
 ---
-title: Obama for America Brand Guide
+title: OFA Brand Guide
 nav-title: Brand Guide
 ---
 

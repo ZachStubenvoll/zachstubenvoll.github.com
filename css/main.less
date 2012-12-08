@@ -47,11 +47,11 @@
 
 @light-gray: #ddd;
 @dark-gray: #999;
-@body-copy: black;
+@body-copy: #262626;
 @link-color: #BCBEC0;
-@link-hover: #BE1E37;
+@link-hover: #D8474C;
 
-@condensed: "proxima-nova-condensed-1","proxima-nova-condensed-2", sans-serif;
+@condensed: "alternate-gothic-no-1-d-1","alternate-gothic-no-1-d-2";
 @body: "proxima-nova-1","proxima-nova-2", sans-serif;
 
 body {
@@ -162,8 +162,8 @@ body {
 
         #contact-me {
             text-indent: 101%;
-            font-size: 14px;
             font-weight: bold;
+            font-size: 21px;
             overflow: hidden;
             display: block;
             height: 0;
@@ -226,18 +226,29 @@ body {
                     -moz-animation: fadeIn 1s ease-in-out;
                     animation: fadeIn 1s ease-in-out;
                 }
+                figcaption {
+                    display: none;
+                    // font-family: @body;
+                    // display: block;
+                    // text-transform: capitalize;
+                    // color: @dark-gray;
+                    // margin: 30px 0;
+                }
 
                 img {
                     width: 100%;
                     height: auto;
                     margin: 0 auto 20px;
+                    cursor: pointer;
                 }
-                figcaption {
-                    font-family: @body;
-                    display: block;
-                    text-transform: capitalize;
-                    color: @dark-gray;
-                    margin: 30px 0;
+
+                article {
+                    p {
+                        font-family: @body;
+                        margin: 0;
+                        padding: 10px 20px 20px;
+                        text-transform: none;
+                    }
                 }
 
                 div {
@@ -292,7 +303,7 @@ footer {
         overflow: hidden;
         a {
             color: @dark-gray;
-            font-size: 12px;
+            font-size: 16px;
             display: block;
             text-align: center;
         }
@@ -335,9 +346,9 @@ footer {
                     -webkit-animation: fadeIn 1s ease-in-out;
                     -moz-animation: fadeIn 1s ease-in-out;
                     animation: fadeIn 1s ease-in-out;
-                    -webkit-transition: all ease 500ms;
-                    -moz-transition: all ease 500ms;
-                    transition: all ease 500ms;
+                    -webkit-transition: height ease 500ms;
+                    -moz-transition: height ease 500ms;
+                    transition: height ease 500ms;
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
@@ -346,13 +357,32 @@ footer {
                         border-left: 1px solid @light-gray;
                     }
                     &#logo {
-                        color: black;
-                        font-size: 32px;
-                        font-family: @condensed;
-                        a {
+                        background-color: @link-hover;
+                        position: relative;
+
+                        #zach {
                             background: url('../img/homepage-logo.png') 50% 50% no-repeat;
+                            background-size: 80%;
+                            display: block;
                             overflow: hidden;
                             text-indent: -9999px;
+                        }
+
+                        #for-hire {
+                            display: block;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            height: auto;
+                            width: auto;
+                            text-align: center;
+                            b {
+                                display: inline-block;
+                                background: white;
+                                color: @link-hover;
+                                padding: 0 20px;
+                            }
                         }
                     }
                     a {
@@ -360,6 +390,8 @@ footer {
                         vertical-align: middle;
                         width: 100%;
                         height: 100%;
+                        font-size: 24px;
+                        letter-spacing: 0.025em;
                     }
                 }
             }
@@ -374,6 +406,7 @@ footer {
             padding: 0;
             opacity: 0;
             text-align: center;
+            font-size: 16px;
             border: none;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
@@ -398,7 +431,6 @@ footer {
                 display: block;
                 text-align: left;
                 position: absolute;
-                font-size: 16px;
                 top: 0;
                 left: 2%;
                 margin: 0;
@@ -413,6 +445,9 @@ footer {
                 b {
                     display: inline-block;
                     margin: 20px 0;
+                    font-size: 21px;
+                    white-space: nowrap;
+                    overflow: visible;
                 }
                 strong {
                     display: inline-block;
@@ -424,11 +459,10 @@ footer {
                     color: @dark-gray;
                     border-left: 2px solid @link-hover;
                     white-space: nowrap;
-                    &.animate {
+
                         -webkit-animation: fadeIn 250ms ease;
                         -moz-animation: fadeIn 250ms ease;
                         animation: fadeIn 250ms ease;
-                    }
                 }
                 > ul {
                     display: block;
@@ -514,13 +548,69 @@ footer {
         ol {
             li {
                 border: none;
+                margin-bottom: 20px;
                 header {
                     display: none;
                 }
                 figure {
                     display: block;
+                    position: relative;
                     figcaption {
                         display: none;
+                    }
+
+                    article {
+                        &.show {
+                            opacity: 1;
+                            top: 20px;
+                            bottom:40px;
+                            left: 20px;
+                            right: 20px;
+                            padding-top: 12.5%;
+
+                            h3,
+                            p,
+                            b {
+                                display: block;
+                            }
+                            
+                        }
+
+                        position: absolute;
+                        
+                        opacity: 0;
+                        background: rgba(255,255,255,.97);
+
+                        -webkit-transition: all 500ms ease;
+                        -moz-transition: all 500ms ease;
+                        transition: all 500ms ease;
+
+                        h3,
+                        p,
+                        b {
+                            display: none;
+                        }
+
+                        p {
+                            width: 70%;
+                            line-height: 1.8;
+                            margin: 0 auto;
+                        }
+
+                        b {
+                            font-size: 12px;
+                            color: @link-hover;
+                            cursor: pointer;
+
+                            -webkit-animation: slideDown 1s ease;
+                            -moz-animation: slideDown 1s ease;
+                            animation: slideDown 1s ease;
+
+                            &:hover {
+                                color: darken(@link-hover, 20%);
+                            }
+                        }
+
                     }
 
                     div {
@@ -555,7 +645,7 @@ footer {
                 display: table-cell;
                 vertical-align: bottom;
                 bottom:20px;
-                font-size: 32px;
+                font-size: 46px;
                 font-weight: normal;
                 line-height: 1;
                 text-decoration: none;
@@ -568,6 +658,7 @@ footer {
             p {
                 width: 40%;
                 padding: 0 20px;
+                line-height: 1.8;
                 display: block;
                 margin: 0 auto;
                 overflow: hidden;
@@ -593,6 +684,8 @@ footer {
                         vertical-align: middle;
                         width: 100%;
                         height: 100%;
+                        font-size: 24px;
+                        letter-spacing: 0.025em;
                     }
                 }
             }
@@ -640,7 +733,32 @@ footer {
 }
 
 .nine-sixty() {
-
+    #main {
+        ol {
+            li {
+                figure {
+                    article {
+                        p {
+                            width: 40%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #main-nav {
+        &.show {
+            ul {
+                li {
+                    &#logo {
+                        #zach {
+                            background-size: auto;                            
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media
@@ -655,7 +773,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
                 }
             }
         }
-    }
+    }    
 }
 
 /* DON'T MODIFY THESE */
