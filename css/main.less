@@ -145,7 +145,6 @@ body {
             > ul {
                 display: none;
                 margin: 5px 0 0;
-                font-size: 16px;
                 text-align: center;
                 border-top: 1px solid @light-gray;
                 padding-top: 10px;
@@ -389,17 +388,34 @@ footer {
                                 display: inline-block;
                                 background: white;
                                 color: @link-hover;
-                                padding: 0 20px;
+                                padding: 10px 14px;
+                                -webkit-transition: all 250ms ease;
+                                   -moz-transition: all 250ms ease;
+                                        transition: all 250ms ease;
+                            }
+
+                            &:hover {
+                                b {
+                                    color: white;
+                                    background: @link-hover;
+                                    border-top: 4px solid white;
+                                    border-left: 4px solid white;
+                                    border-right: 4px solid white;
+                                }
                             }
                         }
                     }
                     a {
+                        color: @body-copy;
                         display: table-cell;
                         vertical-align: middle;
                         width: 100%;
                         height: 100%;
                         font-size: 14px;
                         letter-spacing: 0.075em;
+                        &:hover {
+                            color: @link-hover;
+                        }
                     }
                 }
             }
@@ -409,7 +425,6 @@ footer {
     #main {
         padding: 0;
         position: relative;
-        box-shadow: 0 0 5px rgba(0,0,0,0.6);
         #main-header {
             top: -100px;
             padding: 0;
@@ -432,6 +447,10 @@ footer {
                 letter-spacing: 0.075em;
                 line-height: 25px;
                 height: auto;
+
+                -webkit-transition: right 1s ease-in-out;
+                -moz-transition: right 1s ease-in-out;
+                transition: right 1s ease-in-out;
                 i {
                     display: none;
                 }
@@ -450,29 +469,28 @@ footer {
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
+
+                -webkit-transition: left 1s ease-in-out;
+                -moz-transition: left 1s ease-in-out;
+                transition: left 1s ease-in-out;
                 i {
                     display: none;
                 }
                 b {
                     display: inline-block;
+                    vertical-align: middle;
                     margin: 20px 0;
-                    white-space: nowrap;
-                    overflow: visible;
                     letter-spacing: 0.075em;
                 }
                 strong {
                     display: inline-block;
+                    vertical-align: middle;
                     margin: 0 0 0 20px;
                     padding: 0 0 0 12px;
                     text-transform: capitalize;
                     z-index: 500;
                     color: @dark-gray;
                     border-left: 2px solid @link-hover;
-                    white-space: nowrap;
-
-                        -webkit-animation: fadeIn 250ms ease;
-                        -moz-animation: fadeIn 250ms ease;
-                        animation: fadeIn 250ms ease;
                 }
                 > ul {
                     display: block;
@@ -506,7 +524,7 @@ footer {
                             border: none;
                         }
                         a {
-                            color: @light-gray;
+                            color: @body-copy;
                             &:hover {
                                 color: @link-hover;
                             }
@@ -556,9 +574,11 @@ footer {
             &.about {
                 box-shadow: none;
                 border-bottom: 1px solid @light-gray;
-                h2,
+                h2 {
+                    left: -100%;
+                }
                 #contact-me {
-                    display: none;
+                    right: -100%;
                 }
             }
 
@@ -570,6 +590,9 @@ footer {
                 position: relative;
                 background: white;
                 padding-bottom: 20px;
+                &:first-child {
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+                }
                 header {
                     display: none;
                 }

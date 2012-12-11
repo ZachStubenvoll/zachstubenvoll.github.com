@@ -47,10 +47,8 @@
         mainNavItems        =   mainNavList.find('li'),
         main                =   $('#main'),
         mainHeader          =   main.find('#main-header'),
-        mainTitle           =   mainHeader.find('h2 b'),
         mainSubnav          =   mainHeader.find('h2 ul'),
         mainSubnavLinks     =   mainSubnav.find('li'),
-        mainSubTitle        =   mainHeader.find('h2 strong'),
         mainContact         =   $('#contact-me'),
         mobileLogo          =   mainHeader.find('h1'),
         mobileNav           =   mainHeader.find('h2 i'),
@@ -79,7 +77,7 @@
 
         main.css('top', windowHeight);
         footer.css('top', windowHeight);
-        mainHeight          =   Math.floor(main.offset().top + main.outerHeight(true));
+        mainHeight          =   Math.floor((main.offset().top + main.outerHeight(true)) - 100);
         main.data(OFFSETBOTTOM, mainHeight);
 
         mainHeaderOffset    =   Math.floor(main.offset().top);
@@ -111,8 +109,6 @@
         scrollDistance  =   wndw.scrollTop();
         scrollDistance  =   scrollDistance ? scrollDistance : 0;
 
-        console.log(scrollDistance);
-
         if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) >= scrollDistance) ) {
             mainHeader.addClass(STAY).removeClass(ABOUT);
         } else if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) <= scrollDistance) ) {
@@ -126,27 +122,30 @@
                 section             =   $(this),
                 figures             =   section.find(FIGURE),
                 sectionHeader       =   section.find(HTWO),
-                sectionText         =   sectionHeader.text(),
+                sectionText         =   sectionHeader.html(),
                 sectionTop          =   section.data(OFFSETTOP),
-                sectionBottom       =   section.data(OFFSETBOTTOM);
+                sectionBottom       =   section.data(OFFSETBOTTOM),
+                mainTitle           =   mainHeader.find('h2 b'),
+                mainSubTitle        =   mainHeader.find('h2 strong');
 
             if ( currentSection !== sectionText ) {
                 
                 if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
                     currentSection = sectionText;
 
-                    mainTitle.text(sectionText);
+                    mainTitle.html(sectionText);
+                    setTimeout(function() {
+                        figures.each(function() {
+                            var
+                                f               =   $(this),
+                                figureTop       =   f.data(OFFSETTOP),
+                                figureCaption   =   f.find(FIGCAPTION);
 
-                    figures.each(function() {
-                        var
-                            f               =   $(this),
-                            figureTop       =   f.data(OFFSETTOP),
-                            figureCaption   =   f.find(FIGCAPTION);
-
-                        if ( (scrollDistance >= figureTop) ) {
-                            mainSubTitle.text(figureCaption.text());
-                        }
-                    });
+                            if ( (scrollDistance >= figureTop) ) {
+                                mainSubTitle.html(figureCaption.html());
+                            }
+                        });
+                    },10);
                 }
             
             }
@@ -157,8 +156,8 @@
     function setup( h ) {
         var
             w               =   wndw.innerWidth(),
-            mainNavItems    =   mainNavList.find('li'),
-            subnavItems     =   mainSubnav.find('li'),
+            mainNavItems    =   mainNavList.find(LISTITEM),
+            subnavItems     =   mainSubnav.find(LISTITEM),
             mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll" id="zach">Zach Stubenvoll</a><a href="mailto:zachstubenvoll@me.com" title="For Hire" id="for-hire"><b>For Hire</b></a></li>';
 
         if ( (mainNavItems.length <= 0) && (subnavItems.length <= 0) ) {
