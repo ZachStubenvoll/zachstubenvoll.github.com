@@ -3,6 +3,7 @@
 
     var
         // CONSTANT Declarations
+        ABOUT               =   'about',
         ALT                 =   'alt',
         AUTO                =   'auto',
         BOLD                =   'b',
@@ -32,6 +33,9 @@
         ZACH                =   'Zach Stubenvoll',
         
         // Variable Declarations
+        noop            =   function() {},
+        console         =    win.console || {"log": noop, "warn": noop, "error": noop},
+
         wndw                =   $(win),
         html                =   $('html'),
         body                =   $('body'),
@@ -71,6 +75,10 @@
 
     function setSectionPositions() {
 
+        var zindex  =   300;
+
+        main.css('top', windowHeight);
+        footer.css('top', windowHeight);
         mainHeight          =   Math.floor(main.offset().top + main.outerHeight(true));
         main.data(OFFSETBOTTOM, mainHeight);
 
@@ -83,6 +91,7 @@
                 sectionID               =   section.attr(ID),
                 sectionFigure           =   section.find(FIGURE);
 
+            section.css('z-index', zindex++);
             section.data(OFFSETTOP, Math.floor(section.offset().top) - 42);
             section.data(OFFSETBOTTOM, section.data(OFFSETTOP) + section.outerHeight(true));
 
@@ -102,10 +111,14 @@
         scrollDistance  =   wndw.scrollTop();
         scrollDistance  =   scrollDistance ? scrollDistance : 0;
 
+        console.log(scrollDistance);
+
         if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) >= scrollDistance) ) {
-            mainHeader.addClass(STAY);
+            mainHeader.addClass(STAY).removeClass(ABOUT);
+        } else if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) <= scrollDistance) ) {
+            mainHeader.addClass(STAY).addClass(ABOUT);
         } else {
-            mainHeader.removeClass(STAY);
+            mainHeader.removeClass(ABOUT).removeClass(STAY);
         }
 
         sections.each(function() {
@@ -118,8 +131,6 @@
                 sectionBottom       =   section.data(OFFSETBOTTOM);
 
             if ( currentSection !== sectionText ) {
-
-                // console.log('different!');
                 
                 if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
                     currentSection = sectionText;
@@ -170,7 +181,7 @@
 
             });
 
-            mainNavList.find('li').eq(4).before(mainLogo);
+            mainNavList.find(LISTITEM).eq(4).before(mainLogo);
         }
 
         if ( w > 767 ) {
@@ -180,10 +191,10 @@
             });
 
             footerNavItems.css({
-                'height' : h + PIXEL
+                'height' : (h - (h/3)) + PIXEL
             });
             
-            footerLogo.css(HEIGHT, h + PIXEL);
+            footerLogo.css(HEIGHT, (h - (h/3)) + PIXEL);
             footerCopy.css(HEIGHT, h + PIXEL);
 
             mainNav.addClass(SHOW);
@@ -211,9 +222,6 @@
         var
             s                       =   $(HASH + target),
             elementDistanceFromTop  =   s.offset().top;
-
-        console.log('scroll distance:' + scrollDistance);
-        console.log('element top:' + elementDistanceFromTop);
 
         htmlbody.animate({scrollTop: elementDistanceFromTop}, 300);
         scrollEffects();
@@ -288,10 +296,12 @@
     });
 
     wndw.resize(function() {
-        windowHeight     =   ($(this).innerHeight() / 3);
+        windowHeight        =   $(this).innerHeight();
+        wndwThird           =   windowHeight / 3;
+        main.css('top', windowHeight);
+        footer.css('top', windowHeight);
         setSectionPositions();
-        setup(windowHeight);
-        wndw.scroll();
+        setup(wndwThird);
     });
 
     wndw.scroll(function() {

@@ -47,9 +47,9 @@
 
 @light-gray: #ddd;
 @dark-gray: #999;
-@body-copy: #262626;
+@body-copy: #404040;
 @link-color: #BCBEC0;
-@link-hover: #D8474C;
+@link-hover: #d8474c;
 
 @condensed: "alternate-gothic-no-1-d-1","alternate-gothic-no-1-d-2";
 @body: "proxima-nova-1","proxima-nova-2", sans-serif;
@@ -58,7 +58,8 @@ body {
     margin:0;
     padding:0;
     background: white;
-    font-family: @condensed;
+    font-size: 14px;
+    font-family: @body;
     text-transform: uppercase;
     text-align: center;
     text-rendering: optimizeLegibility;
@@ -66,6 +67,7 @@ body {
     -webkit-transform: translateZ(0,0,0);
 
     p {
+        font-size: 16px;
         text-transform: normal;
         text-align: left;
     }
@@ -163,7 +165,6 @@ body {
         #contact-me {
             text-indent: 101%;
             font-weight: bold;
-            font-size: 21px;
             overflow: hidden;
             display: block;
             height: 0;
@@ -244,7 +245,6 @@ body {
 
                 article {
                     p {
-                        font-family: @body;
                         margin: 0;
                         padding: 10px 20px 20px;
                         text-transform: none;
@@ -271,6 +271,7 @@ footer {
         b {
             padding-top: 30px;
             display: block;
+            font-family: @condensed;
             font-size: 1.5em;
             font-weight: bold;
         }
@@ -278,7 +279,6 @@ footer {
     article {
         min-height: 170px;
         p {
-            font-family: @body;
             margin: 0;
             padding: 10px 20px 20px;
             text-transform: none;
@@ -302,10 +302,11 @@ footer {
         border-top: 1px solid @light-gray;
         overflow: hidden;
         a {
-            color: @dark-gray;
-            font-size: 16px;
             display: block;
             text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: @link-hover;
         }
     }
 }
@@ -338,6 +339,13 @@ footer {
         display: none;
         &.show {
             display: block;
+            position: fixed;
+            z-index: 300;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: white;
             ul {
                 li {
                     float: left;
@@ -390,8 +398,8 @@ footer {
                         vertical-align: middle;
                         width: 100%;
                         height: 100%;
-                        font-size: 24px;
-                        letter-spacing: 0.025em;
+                        font-size: 14px;
+                        letter-spacing: 0.075em;
                     }
                 }
             }
@@ -401,12 +409,13 @@ footer {
     #main {
         padding: 0;
         position: relative;
+        box-shadow: 0 0 5px rgba(0,0,0,0.6);
         #main-header {
             top: -100px;
             padding: 0;
             opacity: 0;
             text-align: center;
-            font-size: 16px;
+            font-size: 12px;
             border: none;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
@@ -420,6 +429,7 @@ footer {
                 right: 2%;
                 top: 20px;
                 text-align: right;
+                letter-spacing: 0.075em;
                 line-height: 25px;
                 height: auto;
                 i {
@@ -434,6 +444,7 @@ footer {
                 top: 0;
                 left: 2%;
                 margin: 0;
+                font-size: 12px;
                 line-height: 25px;
                 cursor: pointer;
                 -webkit-box-sizing: border-box;
@@ -445,16 +456,15 @@ footer {
                 b {
                     display: inline-block;
                     margin: 20px 0;
-                    font-size: 21px;
                     white-space: nowrap;
                     overflow: visible;
+                    letter-spacing: 0.075em;
                 }
                 strong {
                     display: inline-block;
                     margin: 0 0 0 20px;
-                    padding: 0 0 0 20px;
+                    padding: 0 0 0 12px;
                     text-transform: capitalize;
-                    font-size: 14px;
                     z-index: 500;
                     color: @dark-gray;
                     border-left: 2px solid @link-hover;
@@ -543,12 +553,23 @@ footer {
                 }
             }
 
+            &.about {
+                box-shadow: none;
+                border-bottom: 1px solid @light-gray;
+                h2,
+                #contact-me {
+                    display: none;
+                }
+            }
+
             
         }
         ol {
             li {
                 border: none;
-                margin-bottom: 20px;
+                position: relative;
+                background: white;
+                padding-bottom: 20px;
                 header {
                     display: none;
                 }
@@ -584,6 +605,10 @@ footer {
                         -webkit-transition: all 500ms ease;
                         -moz-transition: all 500ms ease;
                         transition: all 500ms ease;
+
+                        h3 {
+                            font-family: @condensed;
+                        }
 
                         h3,
                         p,
@@ -637,24 +662,26 @@ footer {
 
     footer {
         padding: 0;
+        position: relative;
+        z-index: 400;
+        background: white;
         #footer-header {
-            display: table;
             margin: 0 auto;
-            background: url('../img/ohio.png') 50% 50% no-repeat;
+            background: url('../img/ohio.png') 50% 100% no-repeat;
+        }
+        article {
+            margin-top: 20px;
             b {
-                display: table-cell;
-                vertical-align: bottom;
-                bottom:20px;
-                font-size: 46px;
+                display: inline-block;
+                font-size: 51px;
+                font-family: @condensed;
                 font-weight: normal;
                 line-height: 1;
                 text-decoration: none;
                 padding-bottom: 4px;
-                border-bottom: 6px solid @link-hover;
+                margin-bottom: 20px;
+                border-bottom: 8px solid @link-hover;
             }
-        }
-        article {
-            margin-top: 20px;
             p {
                 width: 40%;
                 padding: 0 20px;
@@ -684,8 +711,7 @@ footer {
                         vertical-align: middle;
                         width: 100%;
                         height: 100%;
-                        font-size: 24px;
-                        letter-spacing: 0.025em;
+                        letter-spacing: 0.075em;
                     }
                 }
             }
