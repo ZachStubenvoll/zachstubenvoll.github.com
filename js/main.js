@@ -30,7 +30,7 @@
         TRACKEVENT          =   '_trackEvent',
         GASCROLL            =   'Scroll to section',
         ZACH                =   'Zach Stubenvoll',
-        
+
         // Variable Declarations
         wndw                =   $(win),
         html                =   $('html'),
@@ -88,7 +88,7 @@
                 var
                     figure          =   $(this),
                     figureImg       =   figure.find(IMG);
-                
+
                 figure.data(OFFSETTOP, Math.floor(figure.offset().top) - 62);
                 figure.data(OFFSETBOTTOM, figure.data(OFFSETTOP) + figure.outerHeight(true));
 
@@ -146,17 +146,18 @@
 
             if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
                 mainTitle.text(sectionHeader.text());
+                setTimeout(function() {
+                    figures.each(function() {
+                        var
+                            f               =   $(this),
+                            figureTop       =   f.data(OFFSETTOP),
+                            figureCaption   =   f.find(FIGCAPTION);
 
-                figures.each(function() {
-                    var
-                        f               =   $(this),
-                        figureTop       =   f.data(OFFSETTOP),
-                        figureCaption   =   f.find(FIGCAPTION);
-
-                    if ( (scrollDistance >= figureTop) ) {
-                        mainSubTitle.text(figureCaption.text());
-                    }
-                });
+                        if ( (scrollDistance >= figureTop) ) {
+                            mainSubTitle.text(figureCaption.text());
+                        }
+                    });
+                },10);
             }
         });
     }
@@ -199,7 +200,7 @@
             footerNavItems.css({
                 'height' : h + PIXEL
             });
-            
+
             footerLogo.css(HEIGHT, h + PIXEL);
             footerCopy.css(HEIGHT, h + PIXEL);
 
