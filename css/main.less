@@ -499,6 +499,15 @@ footer {
                     color: @dark-gray;
                     border-left: 2px solid @link-hover;
                     white-space: nowrap;
+
+                    -webkit-transition: all 500ms ease-in-out;
+                       -moz-transition: all 500ms ease-in-out;
+                            transition: all 500ms ease-in-out;
+
+                    &.animate {
+                        color: @link-hover;
+                        font-size: 14px;
+                    }
                 }
                 > ul {
                     display: block;
