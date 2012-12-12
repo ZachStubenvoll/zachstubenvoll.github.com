@@ -75,8 +75,6 @@
 
     function setSectionPositions() {
 
-        var zindex  =   300;
-
         main.css('top', windowHeight);
         footer.css('top', windowHeight);
         mainHeight          =   Math.floor((main.offset().top + main.outerHeight(true)) - 100);
@@ -91,7 +89,6 @@
                 sectionID               =   section.attr(ID),
                 sectionFigure           =   section.find(FIGURE);
 
-            section.css('z-index', zindex++);
             section.attr(OFFSETTOP, Math.floor(section.offset().top) - 42);
             section.attr(OFFSETBOTTOM, section.attr(OFFSETTOP) + section.outerHeight(true));
 
