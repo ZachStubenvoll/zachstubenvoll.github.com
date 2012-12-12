@@ -72,7 +72,8 @@
         wndwThird           =   windowHeight / 3,
         mainHeight,
         mainHeaderOffset,
-
+        
+        timeout,
         scrollDistance      =    0;
 
     function setSectionPositions() {
@@ -327,7 +328,8 @@
     });
 
     wndw.scroll(function() {
-        scrollEffects();
+        clearTimeout(timeout);
+        timeout     =   setTimeout(scrollEffects(), 100);
     });
 
     sectionImages.on('load', function() {
