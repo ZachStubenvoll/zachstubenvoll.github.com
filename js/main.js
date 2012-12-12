@@ -5,6 +5,7 @@
         // CONSTANT Declarations
         ABOUT               =   'about',
         ALT                 =   'alt',
+        ANIMATE             =   'animate',
         AUTO                =   'auto',
         BOLD                =   'b',
         COLONSPACE          =   ': ',
@@ -59,6 +60,8 @@
         sectionHeader       =   sections.find('h2'),
         sectionImages       =   sections.find('img'),
         sectionArticles     =   sections.find('article'),
+        currentSection      =   '',
+        currentSubSection   =   '',
         footer              =   $('#contact'),
         footerNav           =   footer.find('#contact-nav'),
         footerNavItems      =   footerNav.find('li'),
@@ -69,11 +72,12 @@
         wndwThird           =   windowHeight / 3,
         mainHeight,
         mainHeaderOffset,
-        currentSection,
 
         scrollDistance      =    0;
 
     function setSectionPositions() {
+
+        var zindex  =   300;
 
         main.css('top', windowHeight);
         footer.css('top', windowHeight);
@@ -89,8 +93,9 @@
                 sectionID               =   section.attr(ID),
                 sectionFigure           =   section.find(FIGURE);
 
+            section.css('z-index', zindex++);
             section.attr(OFFSETTOP, Math.floor(section.offset().top) - 42);
-            section.attr(OFFSETBOTTOM, section.attr(OFFSETTOP) + section.outerHeight(true));
+            section.attr(OFFSETBOTTOM, parseInt(section.attr(OFFSETTOP),10) + parseInt(section.outerHeight(true), 10));
 
             sectionFigure.each(function() {
                 var
@@ -98,7 +103,7 @@
                     figureImg       =   figure.find(IMG);
                 
                 figure.attr(OFFSETTOP, Math.floor(figure.offset().top) - 62);
-                figure.attr(OFFSETBOTTOM, figure.attr(OFFSETTOP) + figure.outerHeight(true));
+                figure.attr(OFFSETBOTTOM, parseInt(figure.attr(OFFSETTOP),10) + parseInt(figure.outerHeight(true),10));
 
             });
         });
@@ -123,21 +128,44 @@
                 sectionHeader       =   section.find(HTWO),
                 sectionText         =   sectionHeader.text(),
                 sectionTop          =   section.attr(OFFSETTOP),
-                sectionBottom       =   section.attr(OFFSETBOTTOM);
-                
-            if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
+                sectionBottom       =   section.attr(OFFSETBOTTOM),
+                subSectionText      =   figures.eq(0).text();
+            
+            if ( currentSection !==  sectionText ) {
 
-                mainTitle.text(sectionText);
+                if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance ) ) {
+
+                    currentSection = sectionText;
+                    currentSubSection =  subSectionText;
+
+                    mainTitle.text(sectionText);
+                    mainSubTitle.text(subSectionText);
+
+                }
+                
+            } else {
 
                 figures.each(function() {
                     var
                         f               =   $(this),
                         figureTop       =   f.attr(OFFSETTOP),
-                        figureCaption   =   f.find(FIGCAPTION).text();
+                        figureBottom    =   f.attr(OFFSETBOTTOM),
+                        figureCaption   =   f.find(FIGCAPTION),
+                        figureText      =   figureCaption.text();
 
-                    if ( (scrollDistance >= figureTop) ) {
-                        mainSubTitle.text(figureCaption);
+                    if ( currentSubSection !==  figureText ) {
+
+                        if ( (scrollDistance >= figureTop) && ( figureBottom >= scrollDistance ) ) {
+                            currentSubSection =  figureText;
+
+                            mainSubTitle.text(figureText).addClass(ANIMATE);
+                            setTimeout(function() {
+                                mainSubTitle.removeClass(ANIMATE);
+                            }, 500);
+                        }
+
                     }
+
                 });
             }
             
