@@ -501,10 +501,12 @@ footer {
                     margin: 0 0 0 14px;
                     padding: 0 0 0 20px;
                     text-transform: capitalize;
+                    position: relative;
                     z-index: 500;
                     color: @dark-gray;
                     border-left: 2px solid @link-hover;
                     white-space: nowrap;
+                    overflow: hidden;
 
                     -webkit-transition: all 500ms ease-in-out;
                        -moz-transition: all 500ms ease-in-out;
@@ -512,7 +514,6 @@ footer {
 
                     &.animate {
                         color: @link-hover;
-                        font-size: 14px;
                     }
                 }
                 > ul {
