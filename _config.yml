@@ -1,4 +1,5 @@
 auto:           true
+safe:           true
 baseurl:        "/"
 paginate:       1000
 pygments:       true
