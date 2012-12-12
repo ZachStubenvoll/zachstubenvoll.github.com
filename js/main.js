@@ -20,10 +20,10 @@
         IMG                 =   'img',
         ID                  =   'id',
         LISTITEM            =   'li',
-        OFFSETTOP           =   'offset-top',
-        OFFSETBOTTOM        =   'offset-bottom',
+        OFFSETTOP           =   'data-offset-top',
+        OFFSETBOTTOM        =   'data-offset-bottom',
         PIXEL               =   'px',
-        PROJECT             =   'project',
+        PROJECT             =   'data-project',
         SHOW                =   'show',
         STAY                =   'stay',
         UNORDERED           =   'ul',
@@ -80,10 +80,10 @@
         main.css('top', windowHeight);
         footer.css('top', windowHeight);
         mainHeight          =   Math.floor((main.offset().top + main.outerHeight(true)) - 100);
-        main.data(OFFSETBOTTOM, mainHeight);
+        main.attr(OFFSETBOTTOM, mainHeight);
 
         mainHeaderOffset    =   Math.floor(main.offset().top);
-        mainHeader.data(OFFSETTOP, mainHeaderOffset);
+        mainHeader.attr(OFFSETTOP, mainHeaderOffset);
 
         sections.each(function(index) {
             var
@@ -92,16 +92,16 @@
                 sectionFigure           =   section.find(FIGURE);
 
             section.css('z-index', zindex++);
-            section.data(OFFSETTOP, Math.floor(section.offset().top) - 42);
-            section.data(OFFSETBOTTOM, section.data(OFFSETTOP) + section.outerHeight(true));
+            section.attr(OFFSETTOP, Math.floor(section.offset().top) - 42);
+            section.attr(OFFSETBOTTOM, section.attr(OFFSETTOP) + section.outerHeight(true));
 
             sectionFigure.each(function() {
                 var
                     figure          =   $(this),
                     figureImg       =   figure.find(IMG);
                 
-                figure.data(OFFSETTOP, Math.floor(figure.offset().top) - 62);
-                figure.data(OFFSETBOTTOM, figure.data(OFFSETTOP) + figure.outerHeight(true));
+                figure.attr(OFFSETTOP, Math.floor(figure.offset().top) - 62);
+                figure.attr(OFFSETBOTTOM, figure.attr(OFFSETTOP) + figure.outerHeight(true));
 
             });
         });
@@ -111,9 +111,9 @@
         scrollDistance  =   wndw.scrollTop();
         scrollDistance  =   scrollDistance ? scrollDistance : 0;
 
-        if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) >= scrollDistance) ) {
+        if ( (scrollDistance >= mainHeader.attr(OFFSETTOP))  && ( main.attr(OFFSETBOTTOM) >= scrollDistance) ) {
             mainHeader.addClass(STAY).removeClass(ABOUT);
-        } else if ( (scrollDistance >= mainHeader.data(OFFSETTOP))  && ( main.data(OFFSETBOTTOM) <= scrollDistance) ) {
+        } else if ( (scrollDistance >= mainHeader.attr(OFFSETTOP))  && ( main.attr(OFFSETBOTTOM) <= scrollDistance) ) {
             mainHeader.addClass(STAY).addClass(ABOUT);
         } else {
             mainHeader.removeClass(ABOUT).removeClass(STAY);
@@ -125,8 +125,8 @@
                 figures             =   section.find(FIGURE),
                 sectionHeader       =   section.find(HTWO),
                 sectionText         =   sectionHeader.text(),
-                sectionTop          =   section.data(OFFSETTOP),
-                sectionBottom       =   section.data(OFFSETBOTTOM);
+                sectionTop          =   section.attr(OFFSETTOP),
+                sectionBottom       =   section.attr(OFFSETBOTTOM);
                 
             if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
 
@@ -135,7 +135,7 @@
                 figures.each(function() {
                     var
                         f               =   $(this),
-                        figureTop       =   f.data(OFFSETTOP),
+                        figureTop       =   f.attr(OFFSETTOP),
                         figureCaption   =   f.find(FIGCAPTION).text();
 
                     if ( (scrollDistance >= figureTop) ) {
@@ -163,11 +163,11 @@
                     sectionFigure           =   section.find(FIGURE),
                     sectionHeader           =   section.find(HTWO),
                     sectionText             =   sectionHeader.text(),
-                    sectionHeaderNavTitle   =   sectionHeader.data('nav-title'),
+                    sectionHeaderNavTitle   =   sectionHeader.attr('nav-title'),
                     navItemText             =   sectionHeaderNavTitle !== undefined ? sectionHeaderNavTitle : sectionHeader.text();
 
-                section.data(OFFSETTOP, Math.floor(section.offset().top) - 42);
-                section.data(OFFSETBOTTOM, section.data(OFFSETTOP) + section.outerHeight(true));
+                section.attr(OFFSETTOP, Math.floor(section.offset().top) - 42);
+                section.attr(OFFSETBOTTOM, section.attr(OFFSETTOP) + section.outerHeight(true));
 
                 mainNavList.append('<li data-project="' + sectionID + '"><a href="#' + sectionID + '" title="' + navItemText + '">' + sectionText + '</a></li>');
                 mainSubnav.append('<li data-project="' + sectionID + '"><a href="#' + sectionID + '" title="' + navItemText + '">' + navItemText + '</a></li>');
@@ -249,14 +249,14 @@
         var t = $(this);
         e.preventDefault();
         t.closest(UNORDERED).toggleClass(SHOW);
-        scrollToSection(t.data(PROJECT));
+        scrollToSection(t.attr(PROJECT));
     });
 
     mainNav.on('click', 'a', function(e) {
         var t = $(this);
         if ( t.attr(ID) !== 'for-hire' ) {
             e.preventDefault();
-            scrollToSection(t.closest(LISTITEM).data(PROJECT));
+            scrollToSection(t.closest(LISTITEM).attr(PROJECT));
         }
     });
 
