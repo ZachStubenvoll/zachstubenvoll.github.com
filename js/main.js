@@ -141,6 +141,8 @@
                     mainTitle.text(sectionText);
                     mainSubTitle.text(subSectionText);
 
+                    return false;
+
                 }
                 
             } else {
@@ -162,6 +164,8 @@
                             setTimeout(function() {
                                 mainSubTitle.removeClass(ANIMATE);
                             }, 500);
+
+                            return false;
                         }
 
                     }

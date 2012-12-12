@@ -70,6 +70,12 @@ body {
         font-size: 16px;
         text-transform: normal;
         text-align: left;
+        a {
+            color: @link-hover;
+            &:hover {
+                color: darken(@link-hover, 20%);
+            }
+        }
     }
     a {
         color: @link-color;
