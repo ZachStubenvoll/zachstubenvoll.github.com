@@ -1,5 +1,6 @@
 ---
 title: Infographics
+slug: infographics
 ---
 
 <figure>
