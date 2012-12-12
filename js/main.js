@@ -47,6 +47,8 @@
         mainNavItems        =   mainNavList.find('li'),
         main                =   $('#main'),
         mainHeader          =   main.find('#main-header'),
+        mainTitle           =   mainHeader.find('h2 b'),
+        mainSubTitle        =   mainHeader.find('h2 strong'),
         mainSubnav          =   mainHeader.find('h2 ul'),
         mainSubnavLinks     =   mainSubnav.find('li'),
         mainContact         =   $('#contact-me'),
@@ -122,34 +124,26 @@
                 section             =   $(this),
                 figures             =   section.find(FIGURE),
                 sectionHeader       =   section.find(HTWO),
-                sectionText         =   sectionHeader.html(),
+                sectionText         =   sectionHeader.text(),
                 sectionTop          =   section.data(OFFSETTOP),
-                sectionBottom       =   section.data(OFFSETBOTTOM),
-                mainTitle           =   mainHeader.find('h2 b'),
-                mainSubTitle        =   mainHeader.find('h2 strong');
-
-            if ( currentSection !== sectionText ) {
+                sectionBottom       =   section.data(OFFSETBOTTOM);
                 
-                if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
-                    currentSection = sectionText;
+            if ( (scrollDistance >= sectionTop)  && ( sectionBottom >= scrollDistance) ) {
 
-                    mainTitle.html(sectionText);
-                    setTimeout(function() {
-                        figures.each(function() {
-                            var
-                                f               =   $(this),
-                                figureTop       =   f.data(OFFSETTOP),
-                                figureCaption   =   f.find(FIGCAPTION);
+                mainTitle.text(sectionText);
 
-                            if ( (scrollDistance >= figureTop) ) {
-                                mainSubTitle.html(figureCaption.html());
-                            }
-                        });
-                    },10);
-                }
-            
+                figures.each(function() {
+                    var
+                        f               =   $(this),
+                        figureTop       =   f.data(OFFSETTOP),
+                        figureCaption   =   f.find(FIGCAPTION).text();
+
+                    if ( (scrollDistance >= figureTop) ) {
+                        mainSubTitle.text(figureCaption);
+                    }
+                });
             }
-
+            
         });
     }
 
@@ -193,8 +187,8 @@
                 'height' : (h - (h/3)) + PIXEL
             });
             
-            footerLogo.css(HEIGHT, (h - (h/3)) + PIXEL);
-            footerCopy.css(HEIGHT, h + PIXEL);
+            footerLogo.css(HEIGHT, ((h - (h/3)) + 50) + PIXEL);
+            footerCopy.css(HEIGHT, (h - 50) + PIXEL);
 
             mainNav.addClass(SHOW);
             footerNav.addClass(SHOW);
