@@ -8,11 +8,12 @@
         ANIMATE             =   'animate',
         AUTO                =   'auto',
         BOLD                =   'b',
-        COLONSPACE          =   ': ',
+        CENTERED            =   'centered',
         CONTACT             =   'contact',
         DIV                 =   'div',
         FIGURE              =   'figure',
         FIGCAPTION          =   'figcaption',
+        FIXED               =   'fixed',
         HASH                =   '#',
         HEIGHT              =   'height',
         HIDE                =   'hide',
@@ -27,6 +28,7 @@
         PROJECT             =   'data-project',
         SHOW                =   'show',
         STAY                =   'stay',
+        TOP                 =   'top',
         UNORDERED           =   'ul',
 
         TRACKEVENT          =   '_trackEvent',
@@ -85,8 +87,8 @@
 
         var zindex  =   300;
 
-        main.css('top', windowHeight);
-        footer.css('top', windowHeight);
+        main.css(TOP, windowHeight);
+        footer.css(TOP, windowHeight);
         mainHeight          =   Math.floor((main.offset().top + main.outerHeight(true)) - 100);
         main.attr(OFFSETBOTTOM, mainHeight);
 
@@ -279,7 +281,7 @@
 
         img.src = url;
 
-        $('html').css('overflow', "hidden");
+        html.addClass(FIXED);
 
         modal.find('.close').click(function(e) {
             e.preventDefault();
@@ -295,13 +297,13 @@
             modalImage = modal.find(IMG);
         }
         if (modalImage.height() < wndw.height()) {
-            modalImage.addClass('centered');
+            modalImage.addClass(CENTERED);
             modalImage.css({
                 marginTop : '-' + (modalImage.height() / 2) + PIXEL,
                 marginLeft : '-' + (modalImage.width() / 2) + PIXEL
             });
         } else {
-            modalImage.removeClass('centered');
+            modalImage.removeClass(CENTERED);
             modalImage.css({
                 marginTop : '0px',
                 marginLeft : 'auto'
@@ -312,10 +314,7 @@
     function dismissModal() {
         if (modal.length > 0) {
 
-            $('html').css({
-                'overflow-y' : "scroll",
-                'overflow-x' : "hidden"
-            });
+            html.removeClass(FIXED);
 
             modal.removeClass(SHOW).addClass(HIDE);
 
@@ -339,12 +338,14 @@
     });
 
     partyMode.click(function() {
+        html.addClass(FIXED);
         body.append('<div id="party-mode"><b></b></div>');
         partyOverlay = $('#party-mode');
         partyOverlay.addClass(SHOW);
 
         partyOverlay.on('click', function() {
             $(this).removeClass(SHOW);
+            html.removeClass(FIXED);
         });
     });
     
@@ -414,8 +415,8 @@
     wndw.resize(function() {
         windowHeight        =   $(this).innerHeight();
         wndwThird           =   windowHeight / 3;
-        main.css('top', windowHeight);
-        footer.css('top', windowHeight);
+        main.css(TOP, windowHeight);
+        footer.css(TOP, windowHeight);
         setSectionPositions();
         setup(wndwThird);
     });
