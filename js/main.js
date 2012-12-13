@@ -67,6 +67,9 @@
         footerNavItems      =   footerNav.find('li'),
         footerLogo          =   footer.find('#footer-header'),
         footerCopy          =   footer.find('p'),
+        credits             =   footer.find('#credits'),
+        partyMode           =   credits.find('i'),
+        partyOverlay        =   $('#party-mode'),
         navItems            =   nav.find('li'),
         windowHeight        =   win.innerHeight,
         wndwThird           =   windowHeight / 3,
@@ -254,6 +257,13 @@
         } catch(e) {}
     }
 
+    partyMode.click(function() {
+        partyOverlay.addClass(SHOW);
+    });
+
+    partyOverlay.click(function() {
+        $(this).removeClass(SHOW);
+    });
     mobileContact.click(function(e){
         e.preventDefault();
         scrollToSection(CONTACT);

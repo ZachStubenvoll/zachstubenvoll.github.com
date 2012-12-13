@@ -2,6 +2,106 @@
  
 @import 'normalize';
 
+@-webkit-keyframes pulse {
+    0% { 
+        -webkit-transform: scale(1);
+    }
+    50% { 
+        -webkit-transform: scale(2);
+    }
+    100% { 
+        -webkit-transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {
+    0% { 
+        -moz-transform: scale(1);
+    }
+    50% { 
+        -moz-transform: scale(2);
+    }
+    100% { 
+        -moz-transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% { 
+        transform: scale(1);
+    }
+    50% { 
+        transform: scale(2);
+    }
+    100% { 
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes partyMode {
+    0% { 
+        background-color: rgba(255,0,0,0.6); 
+    }
+    20% { 
+        background-color: rgba(0,255,108,0.6); 
+    }
+    40% { 
+        background-color: rgba(240,255,0,0.6); 
+    }
+    60% { 
+        background-color: rgba(156,0,255,0.6); 
+    }
+    80% { 
+        background-color: rgba(0,240,255,0.6); 
+    }
+    100% { 
+        background-color: rgba(255,198,0,0.6); 
+    }
+}
+
+@-moz-keyframes partyMode {
+    0% { 
+        background-color: rgba(255,0,0,0.6); 
+    }
+    20% { 
+        background-color: rgba(0,255,108,0.6); 
+    }
+    40% { 
+        background-color: rgba(240,255,0,0.6); 
+    }
+    60% { 
+        background-color: rgba(156,0,255,0.6); 
+    }
+    80% { 
+        background-color: rgba(0,240,255,0.6); 
+    }
+    100% { 
+        background-color: rgba(255,198,0,0.6); 
+    }
+}
+
+@keyframes partyMode {
+    0% { 
+        background-color: rgba(255,0,0,0.6); 
+    }
+    20% { 
+        background-color: rgba(0,255,108,0.6); 
+    }
+    40% { 
+        background-color: rgba(240,255,0,0.6); 
+    }
+    60% { 
+        background-color: rgba(156,0,255,0.6); 
+    }
+    80% { 
+        background-color: rgba(0,240,255,0.6); 
+    }
+    100% { 
+        background-color: rgba(255,198,0,0.6); 
+    }
+}
+
+
 @-webkit-keyframes fadeIn {
     0% {
         opacity: 0;
@@ -175,6 +275,14 @@ body {
             overflow: hidden;
             display: block;
             height: 0;
+
+            -webkit-transition: color ease 500ms,
+                                right ease 1s;
+            -moz-transition: color ease 500ms,
+                             right ease 1s;
+            transition: color ease 500ms,
+                        right ease 1s;
+            
             i {
                 background: url('../img/contact.png') 50% 50% no-repeat;
                 background-size: 22px 22px;
@@ -184,6 +292,9 @@ body {
                 position: absolute;
                 right: 20px;
                 top: 15px;
+            }
+            &:hover {
+                color: @link-hover;
             }
         }
     }
@@ -238,11 +349,6 @@ body {
                 }
                 figcaption {
                     display: none;
-                    // font-family: @body;
-                    // display: block;
-                    // text-transform: capitalize;
-                    // color: @dark-gray;
-                    // margin: 30px 0;
                 }
 
                 img {
@@ -282,18 +388,21 @@ footer {
     padding-top: 20px;
     border-top: 1px solid @light-gray;
     #footer-header {
-        b {
-            padding-top: 30px;
-            display: block;
-            font-family: @condensed;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
     }
     article {
         min-height: 170px;
+        b {
+            padding-top: 20px;
+            display: inline-block;
+            line-height: 1;
+            margin-bottom: 20px;
+            font-family: @condensed;
+            font-size: 40px;
+            font-weight: bold;
+            border-bottom: 8px solid @link-hover;
+        }
         p {
-            margin: 0;
+            margin: 0 0 20px;
             padding: 10px 20px 20px;
             text-transform: none;
         }
@@ -307,6 +416,7 @@ footer {
                 a {
                     display: block;
                     font-weight: bold;
+                    line-height: 3;
                     color: @body-copy;
                 }
             }
@@ -317,6 +427,9 @@ footer {
         padding: 10px 0;
         border-top: 1px solid @light-gray;
         overflow: hidden;
+        i {
+            display: none;
+        }
         a {
             display: block;
             text-align: center;
@@ -325,6 +438,45 @@ footer {
             color: @link-hover;
         }
     }
+}
+
+#party-mode {
+    display: block;
+    position: fixed;
+    top:100%;
+    opacity: 0;
+    -webkit-transition: all ease 250ms;
+       -moz-transition: all ease 250ms;
+            transition: all ease 250ms;
+
+    b {
+        display: none;
+        -webkit-animation: partyMode 10ms infinite alternate;
+        -moz-animation: partyMode 10ms infinite alternate;
+        animation: partyMode 10ms infinite alternate;
+    }
+
+    &.show {
+        top: 0;
+        background: url('../img/yolo.jpg') 100% 0 no-repeat;
+        background-size: 100% 100%;
+        
+        bottom:0;
+        left:0;
+        right:0;
+        z-index: 1000;
+        opacity: 1;
+        b {
+            display: block;
+            position: absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            z-index: 1001;
+        }
+    }
+
 }
 
 .three-twenty-one() {
@@ -463,9 +615,6 @@ footer {
                 line-height: 25px;
                 height: auto;
 
-                -webkit-transition: right 1s ease-in-out;
-                -moz-transition: right 1s ease-in-out;
-                transition: right 1s ease-in-out;
                 i {
                     display: none;
                 }
@@ -731,14 +880,9 @@ footer {
         article {
             margin-top: 20px;
             b {
-                display: inline-block;
                 font-size: 51px;
-                font-family: @condensed;
                 font-weight: normal;
-                line-height: 1;
                 text-decoration: none;
-                margin-bottom: 20px;
-                border-bottom: 8px solid @link-hover;
             }
             p {
                 width: 40%;
@@ -770,12 +914,33 @@ footer {
                         width: 100%;
                         height: 100%;
                         letter-spacing: 0.075em;
+                        -webkit-transition: background 500ms ease-in-out;
+                        -moz-transition: background 500ms ease-in-out;
+                        transition: background 500ms ease-in-out;
+                        &:hover {
+                            color: white;
+                            background: @link-hover;
+                        }
                     }
                 }
             }
         }
         #credits {
+            position: relative;
             margin: 0;
+            i {
+                cursor: pointer;
+                position: absolute;
+                top: 8px;
+                right: 2%;
+                display: block;
+                background: url('../img/party-mode.png') 0 0 no-repeat;
+                height: 20px;
+                width: 20px;
+                &:hover {
+                    background-position: 0 -20px;
+                }
+            }
         }
     }
 }
