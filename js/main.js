@@ -69,12 +69,15 @@
         footerCopy          =   footer.find('p'),
         credits             =   footer.find('#credits'),
         partyMode           =   credits.find('i'),
-        partyOverlay        =   $('#party-mode'),
+        modalLink           =   $('.modal'),
         navItems            =   nav.find('li'),
         windowHeight        =   win.innerHeight,
         wndwThird           =   windowHeight / 3,
         mainHeight,
         mainHeaderOffset,
+        modal,
+        modalImage,
+        partyOverlay,
 
         scrollDistance      =    0;
 
@@ -257,13 +260,94 @@
         } catch(e) {}
     }
 
-    partyMode.click(function() {
-        partyOverlay.addClass(SHOW);
+    function createModal(url) {
+        body.append('<div id="modal"><a class="close" href="#" title="Close">Close</a></div>');
+        modal = $('#modal');
+
+        var img = new win.Image();
+            img.onload = function() {
+                modal.prepend(img);
+                modalImage = modal.find(IMG);
+                
+                repositionModalImage();
+                
+                modalImage.click(function(e){
+                    e.stopPropagation();
+                });
+                modal.addClass(SHOW);
+            };
+
+        img.src = url;
+
+        $('html').css('overflow', "hidden");
+
+        modal.find('.close').click(function(e) {
+            e.preventDefault();
+        });
+        
+        modal.click(function() {
+            dismissModal();
+        });
+    }
+
+    function repositionModalImage() {
+        if (!modalImage) {
+            modalImage = modal.find(IMG);
+        }
+        if (modalImage.height() < wndw.height()) {
+            modalImage.addClass('centered');
+            modalImage.css({
+                marginTop : '-' + (modalImage.height() / 2) + PIXEL,
+                marginLeft : '-' + (modalImage.width() / 2) + PIXEL
+            });
+        } else {
+            modalImage.removeClass('centered');
+            modalImage.css({
+                marginTop : '0px',
+                marginLeft : 'auto'
+            });
+        }
+    }
+    
+    function dismissModal() {
+        if (modal.length > 0) {
+
+            $('html').css({
+                'overflow-y' : "scroll",
+                'overflow-x' : "hidden"
+            });
+
+            modal.removeClass(SHOW).addClass(HIDE);
+
+            setTimeout(function() {
+                modal.remove();
+            }, 200);
+            
+            wndw.off('resize', repositionModalImage);
+        }
+    }
+
+    modalLink.on('click', function(e) {
+        e.preventDefault();
+        createModal($(this).attr('data-image'));
     });
 
-    partyOverlay.click(function() {
-        $(this).removeClass(SHOW);
+    $(doc.documentElement).keyup(function (event) {
+        if (event.keyCode === 27) {
+            dismissModal();
+        }
     });
+
+    partyMode.click(function() {
+        body.append('<div id="party-mode"><b></b></div>');
+        partyOverlay = $('#party-mode');
+        partyOverlay.addClass(SHOW);
+
+        partyOverlay.on('click', function() {
+            $(this).removeClass(SHOW);
+        });
+    });
+    
     mobileContact.click(function(e){
         e.preventDefault();
         scrollToSection(CONTACT);

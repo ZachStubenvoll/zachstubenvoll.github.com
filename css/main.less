@@ -431,7 +431,6 @@ footer {
             display: none;
         }
         a {
-            display: block;
             text-align: center;
             font-size: 12px;
             font-weight: bold;
@@ -1039,3 +1038,131 @@ only screen and (min-device-pixel-ratio : 1.5) {
 html.ie8, html.ie7 {}
 html.ie8 {}
 html.ie7 {}
+
+
+
+
+#modal {
+  z-index: 9999;
+  position: fixed;
+  background: url(../../images/issues/overlay-bg.png);
+  background: rgba(255,255,255,.85);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  overflow: scroll;
+
+  &.show {
+    opacity: 1;
+    -webkit-animation: modalIn 400ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+    -moz-animation: modalIn 400ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+    -ms-animation: modalIn 400ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+  }
+  &.hide {
+    opacity: 0;
+    -webkit-animation: modalOut 200ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+    -moz-animation: modalOut 200ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+    -ms-animation: modalOut 200ms cubic-bezier(0.05,0.2,0.5,1) 0 1;
+  }
+
+  img {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    max-width: 95%;
+    &.centered { // add with js where necessary
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+  }
+  iframe {
+    margin: 100px auto 0;
+    display: block;
+  }
+  a.close, a.closeModal {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    font-family: @condensed;
+    font-weight: bold;
+    color: @body-copy;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 5px;
+    background: rgba(255,255,255,0.85);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    &:hover {
+      color: @link-hover;
+    }
+  }
+  
+  /*========================================
+    MODAL ANIMATION KEYFRAMES
+  ========================================*/
+  @-webkit-keyframes modalIn {
+    0% {
+      -webkit-transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes modalIn {
+    0% {
+      -moz-transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      -moz-transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @-ms-keyframes modalIn {
+    0% {
+      -ms-transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      -ms-transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes modalOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes modalOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      -moz-transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  @-ms-keyframes modalOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      -ms-transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+}
