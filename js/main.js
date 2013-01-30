@@ -123,10 +123,13 @@
 
         if ( (scrollDistance >= mainHeader.attr(OFFSETTOP))  && ( main.attr(OFFSETBOTTOM) >= scrollDistance) ) {
             mainHeader.addClass(STAY).removeClass(ABOUT);
+            mainNav.removeClass(SHOW);
         } else if ( (scrollDistance >= mainHeader.attr(OFFSETTOP))  && ( main.attr(OFFSETBOTTOM) <= scrollDistance) ) {
             mainHeader.addClass(STAY).addClass(ABOUT);
+            mainNav.removeClass(SHOW);
         } else {
             mainHeader.removeClass(ABOUT).removeClass(STAY);
+            mainNav.addClass(SHOW);
         }
 
         sections.each(function() {
@@ -315,7 +318,6 @@
         if (modal.length > 0) {
 
             html.removeClass(FIXED);
-
             modal.removeClass(SHOW).addClass(HIDE);
 
             setTimeout(function() {
