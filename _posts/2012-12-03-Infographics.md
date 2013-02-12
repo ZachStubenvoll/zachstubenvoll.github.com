@@ -8,7 +8,7 @@ slug: infographics
     <img src="img/infographics/infographics.jpg" alt="" />
     <article>
     <h3>Jobs Chart</h3>
-    <p>I initially designed the jobs chart as a random project that was requested months before the release of the chart. It became the most shared image on Facebook at the time and was released on a monthly basis consisting of outputs created for Facebook, Twitter, the BarackObama.com Blog, Flickr, postcards, and was turned into a <a href="http://www.barackobama.com/jobs>interactive chart</a> based on the original design of the static jobs chart. The jobs chart also set the aesthetic tone and foundation for many infographics to follow.</p>
+    <p>I initially designed the jobs chart as a random project that was requested months before the release of the chart. It became the most shared image on Facebook at the time and was released on a monthly basis consisting of outputs created for Facebook, Twitter, the BarackObama.com Blog, Flickr, postcards, and was turned into a interactive chart based on the original design of the static jobs chart. The jobs chart also set the aesthetic tone and foundation for many infographics to follow.</p>
     </article>
 </figure>
 <figure>
