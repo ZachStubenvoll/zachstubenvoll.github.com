@@ -420,6 +420,7 @@
         main.css(TOP, windowHeight);
         footer.css(TOP, windowHeight);
         setSectionPositions();
+        repositionModalImage();
         setup(wndwThird);
     });
 
