@@ -1,7 +1,7 @@
 ---
-title: Jeff Louden
-slug: jeff-louden
-nav-title: Jeff Louden
+title: OFA Brand Guide
+slug: Brand Guide
+nav-title: OFA Brand Guide
 ---
 
 <figure>
