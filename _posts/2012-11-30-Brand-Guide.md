@@ -1,6 +1,6 @@
 ---
 title: OFA Brand Guide
-slug: OFA Brand Guide
+slug: brand-guide
 ---
 
 <figure>
