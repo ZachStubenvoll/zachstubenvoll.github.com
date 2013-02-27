@@ -5,5 +5,5 @@ nav-title: Jeff Louden
 ---
 
 <figure>
-    <img src="img/louden/louden-site.jpg" />
+    <img src="img/brand-guide/brand-guide.jpg" />
 </figure>
