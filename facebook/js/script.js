@@ -99,7 +99,7 @@ $(document).ready(function() {
 
 
 /*  Google Analytics  */
-var googleAnalyticsID = 'UA-';
+var googleAnalyticsID = 'UA-41917433-1';
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', googleAnalyticsID]);

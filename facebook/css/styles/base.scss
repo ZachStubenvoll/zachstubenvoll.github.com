@@ -235,6 +235,14 @@ img{
     position: relative;
     z-index: 400;
   }
+  &.field-strategies{
+    img{
+      margin: 0 auto;
+      &.primary, &.final{
+        margin: 0 auto 50px;
+      }
+    }
+  }
 }
 .expand{
   display: none;
