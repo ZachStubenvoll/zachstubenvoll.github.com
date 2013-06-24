@@ -1,0 +1,318 @@
+/* Base Styles */
+
+/* Variables */
+  // Color
+  $white: rgba(255,255,255,1); // #ffffff
+  $off-white: rgba(243,243,243,1); // #f3f3f3
+  $black: rgba(21,19,20,1); // #151314
+  $red: rgba(176,78,67,1); // #b04e43
+  $grey: rgba(193,195,197,1); // #c1c3c5
+  $light-grey: rgba(245,245,244,1); // #f5f5f4
+  $dark-grey: rgba(52,52,52,1); // #343434
+
+  // Base Type
+  $headline: "refrigerator-deluxe-1", "refrigerator-deluxe-2", Helvetica, Arial, sans-serif;
+  $body-copy:  "proxima-nova", Helvetica, Arial, sans-serif;
+
+  // Elements
+  $divider: 1px solid rgba(229,229,229,1); /* #E5E5E5 */
+
+  //Keyframes
+  @-webkit-keyframes slow-bounce {
+    0%   { margin-bottom: 0; }
+    10%   { margin-bottom: 2px; }
+    20%   { margin-bottom: 4px; }
+    30%   { margin-bottom: 8px; }
+    40%   { margin-bottom: 10px; }
+    50%   { margin-bottom: 8px; }
+    60%   { margin-bottom: 4px; }
+    70%   { margin-bottom: 2px; }
+    80%   { margin-bottom: 0; }
+    90%   { margin-bottom: 0; }
+    100% { margin-bottom: 0; }
+  }
+  @-moz-keyframes slow-bounce {
+    0%   { margin-bottom: 0; }
+    50% { margin-bottom: 10px; }
+    100% { margin-bottom: 0; }
+  }
+  @-o-keyframes slow-bounce {
+    0%   { margin-bottom: 0; }
+    50% { margin-bottom: 10px; }
+    100% { margin-bottom: 0; }
+  }
+  @keyframes slow-bounce {
+    0%   { margin-bottom: 0; }
+    50% { margin-bottom: 10px; }
+    100% { margin-bottom: 0; }
+  }
+
+// Highlights
+::-moz-selection{ background: #333; color:#fff; text-shadow: none; }
+::selection { background:#333; color:#fff; text-shadow: none; }
+a:link { -webkit-tap-highlight-color: none; }
+
+
+// Global Elements
+html, body {
+}
+body {
+  text-rendering: optimizelegibility;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-family: $body-copy;
+  font-size: 14px;
+  // @include hdpi {
+  //   background-image:  url('../img/');
+  // }
+}
+h1, h2, h3, h4, h5, h6 {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  font-family: $headline;
+  font-weight: 400;
+}
+p{
+  font-family: $body-copy;
+  font-size: 1em;
+}
+ul, ol{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  @include transition(color 0.25s linear);
+  &:hover {
+  }
+}
+i{
+  display: block;
+  background: $red;
+  margin: 4px auto 10px;
+  @include size(75px, 5px);
+}
+img{
+  max-width: 100%;
+}
+
+#hey-facebook{
+  display: block;
+  background: $grey url('../img/bg-500.jpg') no-repeat;
+  background-size: cover;
+  background-position: 20% 100%;
+  position: relative;
+  z-index: 200;
+  height: 320px;
+  padding: 50px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $white;
+  h1{
+    margin: 0;
+    font-size: 1.4em;
+    span{
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+  }
+  ol{
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+  li{
+    display: none;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .step-4{
+    h1{
+     @include transition(margin 1s ease-in-out);
+    }
+    a{
+      display: none;
+      position: absolute;
+      bottom: -10%;
+    }
+    &.alt{
+      position: relative;
+      a{
+        display: block;
+        position: absolute;
+        bottom: -75px;
+        left: 50%;
+        width: 175px;
+        height: 85px;
+        padding: 10px 0;
+        margin: 0 0 0 -87px;
+        font-family: $headline;
+        text-align: center;
+        font-size: 1em;
+        color: $white;
+        @include box;
+        @include animate;
+        @include fadeInDown;
+        @include transition(background 0.25s ease-in-out);
+        span{
+          display: block;
+          background: transparent url('../img/arrow@2x.png') 50% 100% no-repeat;
+          background-size: 100%;
+          margin: 0 auto;
+          @include size(10px,10px);
+        }
+      }
+    }
+  }
+  .visible-step{
+    display: table-cell;
+    @include animate-slow;
+    @include fadeInDown;
+  }
+  @for $i from 1 through 5{
+      &.step-#{$i}{
+          .step-#{$i}{
+              @extend .visible-step;
+              &.fade{
+                  opacity: 0;
+                  @include animate;
+                  @include fadeOut;
+              }
+          }
+      }
+  }
+}
+
+.main{
+  position: relative;
+  top: 0;
+  z-index: 300;
+  background: $white;
+}
+.work{
+  background: $white;
+  padding: 20px;
+  text-align: center;
+  &:nth-child(even){
+    background: $light-grey;
+  }
+  h1{
+    // font-size: 2.6em;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin: 1em 0;
+  }
+  i{
+    width: 100%;
+  }
+  p{
+    width: 550px;
+    max-width: 95%;
+    margin: 0 auto 20px;
+    line-height: 1.75em;
+    &.description{
+      font-size: 1.15em;
+    }
+  }
+  a:not(.condenser), p a{
+    font-size: 1em;
+    margin: 0 auto 20px;
+    color: $red;
+    padding: 10px;
+    @include radius(4px);
+    @include transition( (color 0.25s ease-in-out),(border 0.25s ease-in-out) );
+    &:hover{
+      color: darken($red, 20%);
+    }
+  }
+  img{
+    display: block;
+    margin: 0 auto 50px;
+  }
+  &.louden, &.field-strategies{
+    position: relative;
+    z-index: 400;
+  }
+}
+.expand{
+  display: none;
+}
+.condenser{
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 200;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: $headline;
+  color: $red;
+  @include animate;
+  @include fadeOutLeft;
+  &.active{
+    display: block;
+    @include fadeInLeft;
+  }
+}
+.lets-chat{
+  background: $dark-grey;
+  padding: 75px 20px;
+  color: $white;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  h2{
+    width: 100%;
+    max-width: 350px;
+    max-width: 253px;
+    font-size: 1.1em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  i{
+    width: 100%;
+    margin: 4px auto 15px;
+  }
+  a{
+    font-size: 2.5em;
+    color: $white;
+    letter-spacing: 3px;
+  }
+}
+footer{
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-transform: uppercase;
+  font-size: 1em;
+  p, a{
+    display: block;
+    width: 100%;
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-family: $headline;
+    color: $dark-grey;
+  }
+  a{
+    &:hover{
+      color: $red;
+    }
+  }
+  p{
+    em{
+      @include ir;
+      display: inline-block;
+      vertical-align: top;
+      zoom: 1;
+      background: transparent url('../img/heart@2x.png') 50% 50% no-repeat;
+      background-size: 100%;
+      margin: 2px 2px 0;
+      @include size(12px,11px);
+    }
+  }
+}

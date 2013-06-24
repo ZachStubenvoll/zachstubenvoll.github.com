@@ -1,0 +1,1304 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"a",
+				"and"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"rela",
+				"relative"
+			],
+			[
+				"5px",
+				"50px"
+			],
+			[
+				"left",
+				"left"
+			],
+			[
+				"current",
+				"currentTarget"
+			],
+			[
+				"feedback",
+				"feedbackMenu"
+			],
+			[
+				"feedb",
+				"feedbackMenuClose"
+			],
+			[
+				"feed",
+				"feedback"
+			],
+			[
+				"secondar",
+				"secondaryFilters"
+			],
+			[
+				"module",
+				"moduleIsNull"
+			],
+			[
+				"null",
+				"nullState"
+			],
+			[
+				"stop",
+				"stopPropagation"
+			],
+			[
+				"autop",
+				"autoplayAPIValue"
+			],
+			[
+				"feedob",
+				"feedObjectNull"
+			],
+			[
+				"fw",
+				"fw:n	font-weight:normal"
+			],
+			[
+				"center",
+				"centerAPI"
+			],
+			[
+				"river-item",
+				"river-item-details"
+			],
+			[
+				"lsn",
+				"lis:n	list-style:none"
+			],
+			[
+				"text",
+				"text/javascript"
+			],
+			[
+				"vertical",
+				"vertical-align"
+			],
+			[
+				"fluence",
+				"fluenceapp"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 8878,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.scss",
+			"settings":
+			{
+				"buffer_size": 563,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles/base.scss",
+			"settings":
+			{
+				"buffer_size": 6332,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles/small-screen.scss",
+			"settings":
+			{
+				"buffer_size": 1518,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles/medium-screen.scss",
+			"settings":
+			{
+				"buffer_size": 101,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles/large-screen.scss",
+			"settings":
+			{
+				"buffer_size": 44,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/import/animation.scss",
+			"settings":
+			{
+				"buffer_size": 67168,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "/*\n * scripts.js\n *\n * auto-concatenated jquery, symbolset and custom alternate files\n *\n */\n\n//@codekit-prepend \"libs/jquery-1.7.1.min.js\",\"libs/waypoints.js\",\"libs/lazyload.js\",;\n\n\n\nvar   win             = $(window),\n      doc             = $(document),\n      body            = $('body'),\n      self            = $(this),\n      windowHeight    = win.height(),\n      current         = 1,\n      welcomeIterate;\n\n\nfunction viewportScale(){\n  if ( win.innerWidth() > 767 ) {\n    $('.main').css('top', windowHeight);\n  } else {\n    $('.main').css('top',0);\n  }\n}\n\n$(document).ready(function() {\n  viewportScale();\n\n  win.resize(function(){\n    viewportScale();\n  });\n\n  welcomeIterate = setInterval(function () {\n    $('header li.step-' + current).addClass('fade');\n    current++;\n    $('header').addClass('fade').delay(850).queue(function(next){\n        $('header').removeClass().addClass('step-' + current);\n        next();\n    });\n    if (current === 4){\n      clearInterval(welcomeIterate);\n      $('.step-4').delay(4000).queue(function(next){\n          $(this).addClass('alt');\n          next();\n      });\n      $('.step-4 a').delay(7000).queue(function(next){\n          $(this).addClass('waiting');\n          next();\n      });\n    }\n  }, 3000);\n\n  win.scroll(function() {\n      if ($(window).scrollTop() > 200) {\n          $('.step-4 a').addClass('halt').removeClass('waiting');\n      }\n  });\n\n  $('.work img').lazyload({\n    effect : \"fadeIn\",\n    threshold : 0\n  });\n\n  // $('.expander').click(function(e){\n  //   e.preventDefault();\n  //   $('.expand').slideDown().addClass('active');\n  //   $('.condenser').addClass('active');\n  // });\n\n\n  // $('.condenser').click(function(e){\n  //   e.preventDefault();\n  //   $('.expand').slideUp().removeClass('active');\n  //   $('.condenser').removeClass('active');\n  // });\n\n  // hide condenser when field strat is shown\n  // $('.field-strategies').waypoint(function(e) {\n  //   console.log('field');\n  //   $('.condenser').removeClass('active');\n  // });\n\n  // show condenser when field strat is shown\n  // $('.vii').waypoint(function(e) {\n  //   console.log('vii');\n  //   if ( $('.expand').hasClass('active') ){\n  //     $('.condenser').addClass('active');\n  //   }\n  // });\n\n  $('.top').click(function(e){\n    $(\"html, body\").animate({ scrollTop: 0 }, \"slow\");\n  });\n\n}); // docready\n\n\n/*  Google Analytics  */\nvar googleAnalyticsID = 'UA-';\n\nvar _gaq = _gaq || [];\n_gaq.push(['_setAccount', googleAnalyticsID]);\n_gaq.push(['_trackPageview']);\n\n(function() {\n  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\n  ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\n  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\n})();",
+			"file": "js/script.js",
+			"file_size": 2899,
+			"file_write_time": 1372030663000000,
+			"settings":
+			{
+				"buffer_size": 2810,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"project",
+				"Project: Save As"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 162.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/manikrathee/Dropbox/#Symlink/Consulting/2013/Zach-Stubenvoll-Facebook/css/import/animation.scss",
+		"/opt/fluence/fluenceweb/shell/static/tpl/SubmissionTableRowView.html",
+		"/opt/fluence/fluenceweb/server/config.py",
+		"/opt/fluence/fluenceweb/client/static/tpl/SubmissionView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/HeaderView.html",
+		"/opt/fluence/fluenceweb/client/static/css/core/animation.scss",
+		"/opt/fluence/fluenceweb/client/static/js/views/submission.js",
+		"/Users/manikrathee/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/opt/fluence/fluenceweb/client/static/js/views/feedback.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/submission.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/feedback.js",
+		"/opt/fluence/fluenceweb/shell/static/js/main.js",
+		"/opt/fluence/fluenceweb/client/static/css/styles/base.scss",
+		"/opt/fluence/fluenceweb/client/static/js/models/promote.js",
+		"/opt/fluence/fluenceweb/client/static/css/core/mixins.scss",
+		"/Users/manikrathee/Desktop/Preferences.sublime-settings",
+		"/opt/fluence/fluenceweb/server/submit.py",
+		"/opt/fluence/fluenceweb/client/static/js/libs/ladda-spin.js",
+		"/opt/fluence/fluenceweb/client/static/css/vendor/ladda.scss",
+		"/opt/fluence/fluenceweb/client/static/js/libs/ladda.js",
+		"/opt/fluence/fluenceweb/server/templates/faq.html",
+		"/opt/fluence/fluenceweb/client/static/css/style.css",
+		"/opt/fluence/fluenceweb/client/static/js/views/core.js",
+		"/opt/fluence/fluenceweb/client/static/js/main.js",
+		"/opt/fluence/fluenceweb/client/static/js/libs/_external-main.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/profile.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/sidebar.js",
+		"/opt/fluence/fluenceweb/shell/static/tpl/PromoteView.html",
+		"/opt/fluence/fluenceweb/client/static/js/libs/intro.js",
+		"/opt/fluence/fluenceweb/client/static/css/styles/large-screen.scss",
+		"/opt/fluence/fluenceweb/client/static/css/styles/medium-screen.scss",
+		"/opt/fluence/fluenceweb/client/static/css/styles/tablet.scss",
+		"/opt/fluence/fluenceweb/client/static/css/styles/global.scss",
+		"/opt/fluence/fluenceweb/client/static/tpl/HomeView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/SettingsView.html",
+		"/Users/manikrathee/Dropbox/#Symlink/#ManikRathee/v5/#HTDOCS/js/sequential.js",
+		"/opt/fluence/fluenceweb/client/static/css/vendor/intro-js.scss",
+		"/opt/fluence/fluenceweb/client/static/js/models/settings.js",
+		"/Users/manikrathee/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/manikrathee/Library/Application Support/Sublime Text 2/Packages/User/Emmet.sublime-settings",
+		"/opt/fluence/fluenceweb/server/templates/welcome.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/PromoteView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/PeopleView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/FeedView.html",
+		"/opt/fluence/fluenceweb/server/templates/terms-of-service.html",
+		"/opt/fluence/fluenceweb/client/static/css/style.sass",
+		"/opt/fluence/fluenceweb/client/static/css/styles/base.sass",
+		"/opt/fluence/fluenceweb/client/static/tpl/MediaView.html",
+		"/opt/fluence/fluenceweb/client/static/js/views/feed.js",
+		"/opt/fluence/fluenceweb/client/static/css/core/media-queries.scss",
+		"/opt/fluence/fluenceweb/client/static/js/views/media.js",
+		"/opt/fluence/fluenceweb/server/templates/guestlist.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/SidebarView.html",
+		"/opt/fluence/fluenceweb/server/app.py",
+		"/opt/fluence/fluenceweb/client/static/tpl/StatsView.html",
+		"/opt/fluence/fluenceweb/client/static/js/libs/count.js",
+		"/Users/manikrathee/Dropbox/Mackup/.ssh/continu-20130515.pem",
+		"/Users/manikrathee/Dropbox/Mackup/.ssh/AWS_continu-prod-2013-05-15.rsa",
+		"/Users/manikrathee/Dropbox/Mackup/.ssh/AWS_continu-2013-05-15.rsa",
+		"/Users/manikrathee/Dropbox/Mackup/.ssh/id_rsa.pub",
+		"/Users/manikrathee/Dropbox/Mackup/.ssh/id_rsa",
+		"/opt/fluence/fluenceweb/client/static/js/views/settings.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/people.js",
+		"/opt/fluence/fluenceweb/client/static/css/import/animation.scss",
+		"/opt/fluence/fluenceweb/server/templates/notice.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/ProfileView.html",
+		"/opt/fluence/fluenceweb/client/static/js/libs/smoothscroll.js",
+		"/opt/fluence/fluenceweb/client/static/css/import/tooltip.scss",
+		"/opt/fluence/fluenceweb/client/static/tpl/FeedbackView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/CampaignView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/CampaignsView.html",
+		"/private/etc/launchd.conf",
+		"/private/etc/sysctl.conf",
+		"/Users/manikrathee/.zprofile",
+		"/Users/manikrathee/.bash_profile",
+		"/opt/fluence/fluenceweb/server/templates/base_template.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/AuditionView.html",
+		"/opt/fluence/fluenceweb/client/static/js/views/audition.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/people.js",
+		"/opt/fluence/fluenceweb/client/static/css/import/mixins.scss",
+		"/opt/fluence/fluenceweb/client/static/js/models/profile.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/campaigns.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/stats.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/campaigns.js",
+		"/opt/fluence/fluenceweb/client/static/js/views/campaign.js",
+		"/opt/fluence/fluenceweb/client/index.html",
+		"/opt/fluence/fluenceweb/server/templates/index.html",
+		"/Users/manikrathee/.gitignore",
+		"/opt/fluence/fluenceweb/shell/index.html",
+		"/opt/fluence/fluenceweb/shell/static/js/views/media.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/campaign.js",
+		"/opt/fluence/fluenceweb/client/static/tpl/SubmissionListItemView.html",
+		"/opt/fluence/fluenceweb/client/static/css/import/media-queries.scss",
+		"/Users/manikrathee/Desktop/countable.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/feedback.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/stats.js",
+		"/opt/fluence/fluenceweb/client/static/js/models/submission.js",
+		"/opt/fluence/fluenceweb/client/static/css/import/ss-gizmo.scss",
+		"/opt/fluence/fluenceweb/client/static/js/libs/opentip.js",
+		"/opt/fluence/fluenceweb/client/static/css/import/opentip.scss",
+		"/opt/fluence/fluenceweb/client/static/tpl/MediaListItemView.html",
+		"/opt/fluence/fluenceweb/client/static/tpl/GuestView.html",
+		"/opt/fluence/fluenceweb/server/templates/embed.html",
+		"/Users/manikrathee/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
+		"/Users/manikrathee/Dropbox/#Symlink/Aileen-Marie/squarespace/blocks/navigation.block",
+		"/Users/manikrathee/Dropbox/#Symlink/Consulting/2013/Continu/app/continu-r1.0/config/config.yml",
+		"/opt/fluence/fluenceweb/client/static/css/import/ss-standard.scss",
+		"/Users/manikrathee/Library/Caches/Cleanup At Startup/Transmit/FE395BE3-6925-4108-9CF3-0A9B6A72D643/.htaccess",
+		"/Users/manikrathee/Dropbox/#Symlink/Consulting/2013/Continu/app/continu-r1.0/config/database.yml",
+		"/Users/manikrathee/Downloads/mysql-5.6.10-osx10.7-x86_64/include/mysql/psi/mysql_socket.h",
+		"/Users/manikrathee/Dropbox/#Symlink/Frameworks/1140gs-Custom/css/import/mixins.scss",
+		"/opt/fluence/fluenceweb/client/static/css/style.scss",
+		"/opt/fluence/fluenceweb/client/static/webfonts/ss-social-circle.svg",
+		"/opt/fluence/fluenceweb/client/static/css/import/hook.scss",
+		"/opt/fluence/fluenceweb/client/static/js/libs/hook.js",
+		"/opt/fluence/fluenceweb/client/static/js/libs/mousewheel.js",
+		"/opt/fluence/fluenceweb/shell/static/tpl/MediaView.html",
+		"/opt/fluence/fluenceweb/shell/static/tpl/HeaderView.html",
+		"/opt/fluence/fluenceweb/shell/static/tpl/UserListItemView.html",
+		"/opt/fluence/fluenceweb/shell/static/tpl/UserView.html",
+		"/opt/fluence/fluenceweb/shell/static/tpl/HomeView.html",
+		"/opt/fluence/fluenceweb/shell/static/js/views/user.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/paginator.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/home.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/header.js",
+		"/opt/fluence/fluenceweb/shell/static/js/views/core.js",
+		"/opt/fluence/fluenceweb/shell/static/css/styles.css",
+		"/opt/fluence/fluenceweb/shell/static/tpl/SubmissionView.html"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"for",
+			"next",
+			"data-intro",
+			"console",
+			"remaining",
+			"currentPromotionStats",
+			"get_stats",
+			"https://soundcloud.com/theeconomist/pacifying-syria-a-complex",
+			"error",
+			"submit_url",
+			"delay",
+			"get_auditioners",
+			"id",
+			"+",
+			"autocomplete",
+			"tag-field",
+			"get_auditioners",
+			"autocomplete",
+			"submission-url",
+			"your-promotions",
+			"submit",
+			"promote",
+			"characterLimit",
+			"get_stats",
+			"comma",
+			"this-promotion",
+			"extend",
+			"module-dark",
+			"your-promotions",
+			"promoted-items",
+			"promo",
+			"this-promo",
+			"this-promote",
+			"this-promote-stats",
+			"this-promotion",
+			"this-promot",
+			"promote",
+			"current",
+			"promote",
+			"#submit",
+			"submission",
+			"submit",
+			"back-to",
+			"submission",
+			"&.next",
+			"signup",
+			"module",
+			"transparent-",
+			"transparent",
+			"clear",
+			"logo",
+			"null",
+			"you have no",
+			"submit",
+			"hint--bottom",
+			"promote",
+			"there was a problem",
+			"transition",
+			"setinggs",
+			"page-header-small",
+			"class=\"page-header-small\"",
+			"page-header-small",
+			"page-header",
+			".container",
+			"promoted",
+			"promote",
+			"submission",
+			".marker-step-",
+			"step-marker",
+			"promote",
+			"ul",
+			"control",
+			"marker",
+			"step-marker",
+			"profile-module",
+			"    \ndelay",
+			"delay",
+			"profile-module",
+			"profile-end",
+			"right",
+			".mobile",
+			"mobile",
+			"Get an element CSS property on the page",
+			"//remove `introjs-fixParent` class from the elements",
+			"nav",
+			"footer",
+			"pushAnalyticsEvent",
+			"first",
+			"signup",
+			"sign-up",
+			"signup",
+			".history",
+			".push",
+			"four",
+			"three",
+			"two",
+			"one",
+			"landing-upper",
+			"landing",
+			"submit",
+			"promote",
+			"track-details",
+			"last-child",
+			".module",
+			"module",
+			"privacy",
+			"settings",
+			"sign up for",
+			"comment",
+			"promote &amp; track",
+			"promote and track",
+			"icon-dark",
+			"next",
+			"/*",
+			"landing",
+			"/*",
+			"border-box",
+			"qa",
+			"stats",
+			"{",
+			"profile",
+			"module",
+			"haha",
+			"/*",
+			"google",
+			"/*",
+			"ipad",
+			"icon-dark"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"currentStep",
+			"hint--right",
+			"ladda-transition",
+			"page-header_small",
+			"class=\"page-header_small\"",
+			"4",
+			"3",
+			"2",
+			"1",
+			" {",
+			"<h2 class=\"page-header-small\">",
+			"<img src=\"http://f.cl.ly/items/0Y3H0Z3G0u1s3R332t43/placeholder.jpg\" alt=\"\">",
+			"",
+			"<span class=\"ss-icon\">Delete</span>",
+			"",
+			"h2",
+			"module",
+			"<p><%= ",
+			"#1297c9",
+			"<a itemprop=\"url\" href=",
+			"@mixin ",
+			".item-meta-data",
+			"                    \n.item-meta-data",
+			"",
+			"dark",
+			"filter-menu-trigger",
+			"{{ user }}",
+			"moduleIsNull",
+			"*",
+			"sixcol last",
+			"sixcol",
+			"class=\"module container row",
+			"class=\"module sixcol",
+			"<a href=\"\" title=\"\">",
+			"font-size: 12px;",
+			".loader-element",
+			"",
+			"sans",
+			"serif",
+			"\"active\"",
+			"0.15",
+			"0,0,0,0.15",
+			"0,0,0,0.35",
+			"255,255,255,0.35",
+			"(255,255,255,0.35) ",
+			"rgba(0,0,0,0.35)",
+			"<p class=\"button\" title=\"Learn More\">Learn More</p>",
+			"translateY(0px);",
+			"translateY(-100px);",
+			"3s ease-in-out"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 8878,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4431,
+								4431
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 839.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "css/style.scss",
+					"settings":
+					{
+						"buffer_size": 563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "css/styles/base.scss",
+					"settings":
+					{
+						"buffer_size": 6332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3498,
+								3498
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2945.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "css/styles/small-screen.scss",
+					"settings":
+					{
+						"buffer_size": 1518,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "css/styles/medium-screen.scss",
+					"settings":
+					{
+						"buffer_size": 101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "css/styles/large-screen.scss",
+					"settings":
+					{
+						"buffer_size": 44,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "css/import/animation.scss",
+					"settings":
+					{
+						"buffer_size": 67168,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24339,
+								24352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 22410.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "js/script.js",
+					"settings":
+					{
+						"buffer_size": 2810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2318,
+								2318
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1593.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.326798813088,
+			0.656974589542,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 128.0
+	},
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"anim",
+				"css/import/animation.scss"
+			],
+			[
+				"anima",
+				"css/import/animation.scss"
+			],
+			[
+				"config",
+				"fluenceweb/server/config.py"
+			],
+			[
+				"large",
+				"fluenceweb/client/static/css/styles/large-screen.scss"
+			],
+			[
+				"promote",
+				"fluenceweb/client/static/js/views/promote.js"
+			],
+			[
+				"animat",
+				"fluenceweb/client/static/css/core/animation.scss"
+			],
+			[
+				"feedbac",
+				"fluenceweb/client/static/js/views/feedback.js"
+			],
+			[
+				"submission",
+				"fluenceweb/shell/static/js/views/submission.js"
+			],
+			[
+				"feed",
+				"fluenceweb/shell/static/js/views/feedback.js"
+			],
+			[
+				"base.cs",
+				"fluenceweb/client/static/css/styles/base.scss"
+			],
+			[
+				"externa",
+				"fluenceweb/client/static/js/libs/_external-main.js"
+			],
+			[
+				"core",
+				"fluenceweb/client/static/js/views/core.js"
+			],
+			[
+				"mixin",
+				"fluenceweb/client/static/css/core/mixins.scss"
+			],
+			[
+				"stats",
+				"fluenceweb/client/static/tpl/StatsView.html"
+			],
+			[
+				"submit",
+				"fluenceweb/shell/static/tpl/SubmissionTableRowView.html"
+			],
+			[
+				"notice",
+				"fluenceweb/server/templates/notice.html"
+			],
+			[
+				"faq",
+				"fluenceweb/server/templates/faq.html"
+			],
+			[
+				"main",
+				"fluenceweb/shell/static/js/main.js"
+			],
+			[
+				"submi",
+				"fluenceweb/client/static/js/views/submission.js"
+			],
+			[
+				"style.",
+				"fluenceweb/client/static/css/style.css"
+			],
+			[
+				"signu",
+				"fluenceweb/server/templates/signup.html"
+			],
+			[
+				"sidebar",
+				"fluenceweb/client/static/tpl/SidebarView.html"
+			],
+			[
+				"profile",
+				"fluenceweb/client/static/js/views/profile.js"
+			],
+			[
+				"medium",
+				"fluenceweb/client/static/css/styles/medium-screen.scss"
+			],
+			[
+				"intro",
+				"fluenceweb/client/static/js/libs/intro.js"
+			],
+			[
+				"settings",
+				"fluenceweb/client/static/tpl/SettingsView.html"
+			],
+			[
+				"tpl/",
+				"fluenceweb/client/static/tpl/FeedView.html"
+			],
+			[
+				"",
+				"fluenceweb/client/static/css/styles/mobile.scss"
+			],
+			[
+				"external",
+				"fluenceweb/client/static/js/libs/_external-main.js"
+			],
+			[
+				"style.css",
+				"fluenceweb/client/static/css/style.css"
+			],
+			[
+				"tos",
+				"fluenceweb/server/templates/terms-of-service.html"
+			],
+			[
+				"base",
+				"fluenceweb/client/static/css/styles/base.sass"
+			],
+			[
+				"style",
+				"fluenceweb/client/static/css/style.sass"
+			],
+			[
+				"views/",
+				"fluenceweb/client/static/js/views/feed.js"
+			],
+			[
+				"mediaq",
+				"fluenceweb/client/static/css/core/media-queries.scss"
+			],
+			[
+				"tablet",
+				"fluenceweb/client/static/css/styles/tablet.scss"
+			],
+			[
+				"guestlist",
+				"fluenceweb/server/templates/guestlist.html"
+			],
+			[
+				"fa",
+				"fluenceweb/server/templates/faq.html"
+			],
+			[
+				"feedview",
+				"client/static/tpl/FeedView.html"
+			],
+			[
+				"nav",
+				"client/static/tpl/HeaderView.html"
+			],
+			[
+				"noti",
+				"server/templates/notice.html"
+			],
+			[
+				"people",
+				"client/static/js/views/people.js"
+			],
+			[
+				"smooth",
+				"client/static/js/libs/smoothscroll.js"
+			],
+			[
+				"smoothsc",
+				"client/static/js/libs/smoothscroll.js"
+			],
+			[
+				"campaigns",
+				"client/static/tpl/CampaignsView.html"
+			],
+			[
+				"cama",
+				"client/static/css/import/animation.scss"
+			],
+			[
+				"campaign",
+				"client/static/tpl/CampaignView.html"
+			],
+			[
+				"tool",
+				"client/static/css/import/tooltip.scss"
+			],
+			[
+				"template",
+				"server/templates/base_template.html"
+			],
+			[
+				"header",
+				"client/static/tpl/HeaderView.html"
+			],
+			[
+				"pro",
+				"client/static/js/models/profile.js"
+			],
+			[
+				"prof",
+				"client/static/tpl/ProfileView.html"
+			],
+			[
+				"feedba",
+				"client/static/js/views/feedback.js"
+			],
+			[
+				"audition",
+				"client/static/js/views/audition.js"
+			],
+			[
+				"index",
+				"server/templates/index.html"
+			],
+			[
+				"tooltip",
+				"client/static/css/import/tooltip.scss"
+			],
+			[
+				"welcome",
+				"server/templates/welcome.html"
+			],
+			[
+				"camp",
+				"client/static/js/models/campaigns.js"
+			],
+			[
+				"campa",
+				"client/static/js/models/campaign.js"
+			],
+			[
+				"feedback",
+				"client/static/js/models/feedback.js"
+			],
+			[
+				"settingsv",
+				"client/static/tpl/SettingsView.html"
+			],
+			[
+				"toolt",
+				"client/static/css/import/tooltip.scss"
+			],
+			[
+				"opentip",
+				"client/static/css/import/opentip.scss"
+			],
+			[
+				"media",
+				"client/static/css/import/media-queries.scss"
+			],
+			[
+				"extern",
+				"client/static/js/libs/_external-main.js"
+			],
+			[
+				"submis",
+				"client/static/js/views/submission.js"
+			],
+			[
+				"mixins",
+				"client/static/css/import/mixins.scss"
+			],
+			[
+				"submissiom",
+				"client/static/tpl/SubmissionView.html"
+			],
+			[
+				"home",
+				"client/static/tpl/HomeView.html"
+			],
+			[
+				"embed",
+				"server/templates/embed.html"
+			],
+			[
+				"guest",
+				"client/static/tpl/GuestView.html"
+			],
+			[
+				"ss-st",
+				"client/static/css/import/ss-standard.scss"
+			],
+			[
+				"gizmo",
+				"client/static/css/import/ss-gizmo.scss"
+			],
+			[
+				"mix",
+				"client/static/css/import/mixins.scss"
+			],
+			[
+				"hook",
+				"client/static/js/libs/hook.js"
+			],
+			[
+				"hook.c",
+				"client/static/css/import/hook.scss"
+			],
+			[
+				"alert",
+				"static/js/libs/alerts.js"
+			],
+			[
+				"loader",
+				"static/css/import/loader.scss"
+			],
+			[
+				"livescr",
+				"#HTDOCS/livescribe.php"
+			],
+			[
+				"rdio",
+				"#HTDOCS/js/libs/jquery.api.rdio.js"
+			],
+			[
+				"cataly",
+				"#HTDOCS/#archive/v5.1-responsive-non-mobile-first/interior_catalyst.php"
+			],
+			[
+				"instagram",
+				"#HTDOCS/js/libs/jquery.api.instagram.js"
+			],
+			[
+				"setting",
+				"fluenceapp/settings.py"
+			],
+			[
+				"color",
+				"fluenceapp/static/css/import/color.scss"
+			],
+			[
+				"small-",
+				"static/css/styles/small-screen.scss"
+			],
+			[
+				"1140",
+				"css/import/1140.less"
+			],
+			[
+				"ty",
+				"css/import/typography.less"
+			],
+			[
+				"instag",
+				"#HTDOCS/js/libs/jquery.api.instagram.js"
+			],
+			[
+				"api",
+				"#HTDOCS/css/import/api.less"
+			],
+			[
+				"script",
+				"#HTDOCS/js/scripts.js"
+			],
+			[
+				"nav.",
+				"#HTDOCS/css/import/nav.less"
+			],
+			[
+				"bann",
+				"includes/banner.php"
+			],
+			[
+				"banner",
+				"includes/banner.php"
+			],
+			[
+				"scr",
+				"js/script.js"
+			],
+			[
+				"footer",
+				"global/footer.php"
+			],
+			[
+				"about",
+				"about.php"
+			],
+			[
+				"home.les",
+				"css/home.less"
+			],
+			[
+				"animate",
+				"css/import/animation.less"
+			],
+			[
+				"base-",
+				"website/templates/base-loggedin.html"
+			],
+			[
+				"scripts",
+				"static/js/script.js"
+			],
+			[
+				"river",
+				"static/js/libs/river.js"
+			],
+			[
+				"colo",
+				"static/css/import/color.scss"
+			],
+			[
+				"coor",
+				"static/css/import/color.scss"
+			],
+			[
+				"color-mix",
+				"static/css/import/color-mixin.scss"
+			],
+			[
+				"valida",
+				"static/js/libs/validation.js"
+			],
+			[
+				"color-m",
+				"static/css/import/color-mixin.scss"
+			],
+			[
+				"artists",
+				"website/templates/artists.html"
+			],
+			[
+				"onboard",
+				"website/templates/onboard.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/manikrathee/Dropbox/#Symlink/#Fluence/Projects/FluenceAlpha.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 305.0,
+	"status_bar_visible": true
+}
