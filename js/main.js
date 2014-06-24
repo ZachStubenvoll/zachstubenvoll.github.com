@@ -192,7 +192,7 @@
             w               =   wndw.innerWidth(),
             mainNavItems    =   mainNavList.find(LISTITEM),
             subnavItems     =   mainSubnav.find(LISTITEM),
-            mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll" id="zach">Zach Stubenvoll</a><a href="mailto:zachstubenvoll@me.com" title="For Hire" id="for-hire"><b>For Hire</b></a></li>';
+            mainLogo        =   '<li id="logo" data-project="contact"><a href="#contact" title="Zach Stubenvoll" id="zach">Zach Stubenvoll</a></li>';
 
         if ( (mainNavItems.length <= 0) && (subnavItems.length <= 0) ) {
 
